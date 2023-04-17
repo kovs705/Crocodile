@@ -56,15 +56,47 @@
 		4E954AA229ED05D600ADECE0 /* Crocodile */ = {
 			isa = PBXGroup;
 			children = (
-				4E954AA329ED05D600ADECE0 /* AppDelegate.swift */,
-				4E954AA529ED05D600ADECE0 /* SceneDelegate.swift */,
-				4E954AA729ED05D600ADECE0 /* ViewController.swift */,
-				4E954AA929ED05D600ADECE0 /* Main.storyboard */,
-				4E954AAC29ED05D900ADECE0 /* Assets.xcassets */,
-				4E954AAE29ED05D900ADECE0 /* LaunchScreen.storyboard */,
+				4E954AB729ED05E400ADECE0 /* Controllers */,
+				4E954AB829ED05F000ADECE0 /* Views */,
+				4E954ABA29ED067200ADECE0 /* Model */,
+				4E954AB929ED065700ADECE0 /* Support */,
 				4E954AB129ED05D900ADECE0 /* Info.plist */,
 			);
 			path = Crocodile;
+			sourceTree = "<group>";
+		};
+		4E954AB729ED05E400ADECE0 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4E954AA729ED05D600ADECE0 /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		4E954AB829ED05F000ADECE0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4E954AA929ED05D600ADECE0 /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4E954AB929ED065700ADECE0 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				4E954AA329ED05D600ADECE0 /* AppDelegate.swift */,
+				4E954AA529ED05D600ADECE0 /* SceneDelegate.swift */,
+				4E954AAC29ED05D900ADECE0 /* Assets.xcassets */,
+				4E954AAE29ED05D900ADECE0 /* LaunchScreen.storyboard */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		4E954ABA29ED067200ADECE0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
