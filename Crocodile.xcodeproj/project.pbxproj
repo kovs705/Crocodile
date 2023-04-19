@@ -74,7 +74,6 @@
 			children = (
 				4ED800F029ED94EC00ABF0A1 /* Utilites */,
 				4E954AB729ED05E400ADECE0 /* Controllers */,
-				4E954AB829ED05F000ADECE0 /* Views */,
 				4E954ABA29ED067200ADECE0 /* Model */,
 				4E954AB929ED065700ADECE0 /* Support */,
 				4E954AB129ED05D900ADECE0 /* Info.plist */,
@@ -94,13 +93,6 @@
 				4ED800EE29ED948000ABF0A1 /* RoolsViewController.swift */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		4E954AB829ED05F000ADECE0 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		4E954AB929ED065700ADECE0 /* Support */ = {
