@@ -10,7 +10,7 @@ import SnapKit
 
 class MainViewController: UIViewController {
 
-    let backgroundImage = UIImageView(image: UIImage(named: "backgroundImage"))
+    let backgroundImage = UIImageView(image: UIImage(named: Resources.Image.backgroundImage))
 
     override func viewDidLoad() {
         super.viewDidLoad()
