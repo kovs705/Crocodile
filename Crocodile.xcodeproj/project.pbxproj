@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0039CF1F29EFE25700AABED7 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0039CF1E29EFE25700AABED7 /* Resources.swift */; };
+		0039CF2529EFEDCD00AABED7 /* GreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0039CF2429EFEDCD00AABED7 /* GreenButton.swift */; };
 		4E954AA429ED05D600ADECE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E954AA329ED05D600ADECE0 /* AppDelegate.swift */; };
 		4E954AA629ED05D600ADECE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E954AA529ED05D600ADECE0 /* SceneDelegate.swift */; };
 		4E954AA829ED05D600ADECE0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E954AA729ED05D600ADECE0 /* MainViewController.swift */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		0039CF1E29EFE25700AABED7 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
+		0039CF2429EFEDCD00AABED7 /* GreenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenButton.swift; sourceTree = "<group>"; };
 		4E954AA029ED05D600ADECE0 /* Crocodile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Crocodile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E954AA329ED05D600ADECE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E954AA529ED05D600ADECE0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,9 +65,18 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		0039CF2329EFEDB200AABED7 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				0039CF2429EFEDCD00AABED7 /* GreenButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
 		4E4AE40529EFC1F30081F450 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0039CF2329EFEDB200AABED7 /* Buttons */,
 				4E4AE40729EFC2180081F450 /* Cells */,
 				4E4AE40629EFC2110081F450 /* Subviews */,
 			);
@@ -237,6 +248,7 @@
 				4ED800ED29ED946A00ABF0A1 /* GameResultViewController.swift in Sources */,
 				4ED800E529ED942C00ABF0A1 /* CategoryViewController.swift in Sources */,
 				4E954AA829ED05D600ADECE0 /* MainViewController.swift in Sources */,
+				0039CF2529EFEDCD00AABED7 /* GreenButton.swift in Sources */,
 				4ED800EF29ED948000ABF0A1 /* RoolsViewController.swift in Sources */,
 				4ED800F229ED94FA00ABF0A1 /* Constants.swift in Sources */,
 				4EC07EEC29EF37B500027410 /* Extenstions.swift in Sources */,
