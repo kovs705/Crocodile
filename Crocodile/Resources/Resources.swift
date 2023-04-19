@@ -8,9 +8,13 @@
 import UIKit
 
 enum Resources {
+    
     enum Image {
         static let backgroundImage = "backgroundImage"
         static let crocodileImage = "crocodileImage"
     }
-}
 
+    enum Colors {
+        static let greenButtonColor = "greenButtonColor"
+    }
+}
