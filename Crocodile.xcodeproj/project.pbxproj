@@ -53,6 +53,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E4AE40529EFC1F30081F450 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4E4AE40729EFC2180081F450 /* Cells */,
+				4E4AE40629EFC2110081F450 /* Subviews */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4E4AE40629EFC2110081F450 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		4E4AE40729EFC2180081F450 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		4E954A9729ED05D600ADECE0 = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +97,7 @@
 			children = (
 				4ED800F029ED94EC00ABF0A1 /* Utilites */,
 				4E954AB729ED05E400ADECE0 /* Controllers */,
+				4E4AE40529EFC1F30081F450 /* Views */,
 				4E954ABA29ED067200ADECE0 /* Model */,
 				4E954AB929ED065700ADECE0 /* Support */,
 				4E954AB129ED05D900ADECE0 /* Info.plist */,
