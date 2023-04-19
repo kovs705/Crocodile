@@ -10,19 +10,21 @@ import SnapKit
 
 class MainViewController: UIViewController {
 
+    let backgroundImage = UIImageView(image: UIImage(named: "backgroundImage"))
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.addSubview(backgroundImage)
-        backgroundImage.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
+        setupBackground()
     }
 
-    let backgroundImage: UIImageView = {
-        let image = UIImageView(image: UIImage(named: "backgroundImage"))
-        image.translatesAutoresizingMaskIntoConstraints = false
-        return image
-    }()
+    func setupBackground() {
+        view.addSubview(backgroundImage)
+        backgroundImage.snp.makeConstraints { make in
+        make.top.equalToSuperview()
+        make.bottom.equalToSuperview()
+        make.left.equalToSuperview()
+        make.right.equalToSuperview()
+        }
+    }
 }
-

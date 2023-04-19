@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0039CF1F29EFE25700AABED7 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0039CF1E29EFE25700AABED7 /* Resources.swift */; };
 		4E954AA429ED05D600ADECE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E954AA329ED05D600ADECE0 /* AppDelegate.swift */; };
 		4E954AA629ED05D600ADECE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E954AA529ED05D600ADECE0 /* SceneDelegate.swift */; };
 		4E954AA829ED05D600ADECE0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E954AA729ED05D600ADECE0 /* MainViewController.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0039CF1E29EFE25700AABED7 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		4E954AA029ED05D600ADECE0 /* Crocodile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Crocodile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E954AA329ED05D600ADECE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E954AA529ED05D600ADECE0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +55,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0039CF1D29EFE22100AABED7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0039CF1E29EFE25700AABED7 /* Resources.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		4E4AE40529EFC1F30081F450 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +105,7 @@
 		4E954AA229ED05D600ADECE0 /* Crocodile */ = {
 			isa = PBXGroup;
 			children = (
+				0039CF1D29EFE22100AABED7 /* Resources */,
 				4ED800F029ED94EC00ABF0A1 /* Utilites */,
 				4E954AB729ED05E400ADECE0 /* Controllers */,
 				4E4AE40529EFC1F30081F450 /* Views */,
@@ -231,6 +242,7 @@
 				4EC07EEC29EF37B500027410 /* Extenstions.swift in Sources */,
 				4ED800EB29ED945800ABF0A1 /* WrongViewController.swift in Sources */,
 				4ED800E929ED944B00ABF0A1 /* CorrectViewController.swift in Sources */,
+				0039CF1F29EFE25700AABED7 /* Resources.swift in Sources */,
 				4E954AA429ED05D600ADECE0 /* AppDelegate.swift in Sources */,
 				4E954AA629ED05D600ADECE0 /* SceneDelegate.swift in Sources */,
 			);
