@@ -14,6 +14,8 @@ class MainViewController: UIViewController {
     let crocodileImage = UIImageView(image: UIImage(named: Resources.Image.crocodileImage))
     let startGameButton = GreenButton(title: "Старт игры")
     let rulesButton = GreenButton(title: "Правила игры")
+    let grassImage1 = UIImageView(image: UIImage(named: Resources.Image.grassImage))
+    let grassImage2 = UIImageView(image: UIImage(named: Resources.Image.grassImage))
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +24,7 @@ class MainViewController: UIViewController {
         setupCrocodileImage()
         setupStartGameButton()
         setupRulesGameButton()
+        setupGrassImage()
 
         
     }
@@ -29,10 +32,10 @@ class MainViewController: UIViewController {
     func setupBackgroundImage() {
         view.addSubview(backgroundImage)
         backgroundImage.snp.makeConstraints { make in
-        make.top.equalToSuperview()
-        make.bottom.equalToSuperview()
-        make.left.equalToSuperview()
-        make.right.equalToSuperview()
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
         }
     }
 
@@ -62,6 +65,24 @@ class MainViewController: UIViewController {
             make.top.equalTo(startGameButton.snp.bottom).offset(48)
             make.width.equalTo(211)
             make.height.equalTo(63)
+        }
+    }
+
+    func setupGrassImage() {
+        view.addSubview(grassImage1)
+        grassImage1.snp.makeConstraints { make in
+            make.bottom.equalToSuperview()
+            make.left.equalToSuperview()
+            make.width.equalTo(95)
+            make.height.equalTo(70)
+        }
+
+        view.addSubview(grassImage2)
+        grassImage2.snp.makeConstraints { make in
+            make.bottom.equalToSuperview()
+            make.right.equalToSuperview()
+            make.width.equalTo(95)
+            make.height.equalTo(70)
         }
     }
 }
