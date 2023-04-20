@@ -18,12 +18,17 @@
 		4EC07EEA29EF33BF00027410 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4EC07EE929EF33BF00027410 /* SnapKit */; };
 		4EC07EEC29EF37B500027410 /* Extenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC07EEB29EF37B500027410 /* Extenstions.swift */; };
 		4ED800E529ED942C00ABF0A1 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED800E429ED942C00ABF0A1 /* CategoryViewController.swift */; };
-		4ED800E729ED943D00ABF0A1 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED800E629ED943D00ABF0A1 /* GameViewController.swift */; };
 		4ED800E929ED944B00ABF0A1 /* CorrectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED800E829ED944B00ABF0A1 /* CorrectViewController.swift */; };
 		4ED800EB29ED945800ABF0A1 /* WrongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED800EA29ED945800ABF0A1 /* WrongViewController.swift */; };
 		4ED800ED29ED946A00ABF0A1 /* GameResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED800EC29ED946A00ABF0A1 /* GameResultViewController.swift */; };
 		4ED800EF29ED948000ABF0A1 /* RoolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED800EE29ED948000ABF0A1 /* RoolsViewController.swift */; };
 		4ED800F229ED94FA00ABF0A1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED800F129ED94FA00ABF0A1 /* Constants.swift */; };
+		8483575929F16259006A1DE7 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8483575829F16259006A1DE7 /* GameViewController.swift */; };
+		8483575C29F16279006A1DE7 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8483575B29F16279006A1DE7 /* GameView.swift */; };
+		8483575E29F1628C006A1DE7 /* MusicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8483575D29F1628C006A1DE7 /* MusicModel.swift */; };
+		8483576529F16347006A1DE7 /* win.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8483576229F16347006A1DE7 /* win.wav */; };
+		8483576629F16347006A1DE7 /* 321.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8483576329F16347006A1DE7 /* 321.wav */; };
+		8483576729F16347006A1DE7 /* lost.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8483576429F16347006A1DE7 /* lost.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,12 +44,17 @@
 		4E954AB129ED05D900ADECE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EC07EEB29EF37B500027410 /* Extenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extenstions.swift; sourceTree = "<group>"; };
 		4ED800E429ED942C00ABF0A1 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
-		4ED800E629ED943D00ABF0A1 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		4ED800E829ED944B00ABF0A1 /* CorrectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectViewController.swift; sourceTree = "<group>"; };
 		4ED800EA29ED945800ABF0A1 /* WrongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrongViewController.swift; sourceTree = "<group>"; };
 		4ED800EC29ED946A00ABF0A1 /* GameResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultViewController.swift; sourceTree = "<group>"; };
 		4ED800EE29ED948000ABF0A1 /* RoolsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoolsViewController.swift; sourceTree = "<group>"; };
 		4ED800F129ED94FA00ABF0A1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		8483575829F16259006A1DE7 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		8483575B29F16279006A1DE7 /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		8483575D29F1628C006A1DE7 /* MusicModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicModel.swift; sourceTree = "<group>"; };
+		8483576229F16347006A1DE7 /* win.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = win.wav; sourceTree = "<group>"; };
+		8483576329F16347006A1DE7 /* 321.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 321.wav; sourceTree = "<group>"; };
+		8483576429F16347006A1DE7 /* lost.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = lost.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +88,7 @@
 		4E4AE40529EFC1F30081F450 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8483575A29F16266006A1DE7 /* GameView */,
 				0039CF2329EFEDB200AABED7 /* Buttons */,
 				4E4AE40729EFC2180081F450 /* Cells */,
 				4E4AE40629EFC2110081F450 /* Subviews */,
@@ -143,8 +154,8 @@
 			children = (
 				4E5DD48729F105DD00E15AEE /* MainVC */,
 				4ED800E429ED942C00ABF0A1 /* CategoryViewController.swift */,
-				4ED800E629ED943D00ABF0A1 /* GameViewController.swift */,
 				4ED800E829ED944B00ABF0A1 /* CorrectViewController.swift */,
+				8483575829F16259006A1DE7 /* GameViewController.swift */,
 				4ED800EA29ED945800ABF0A1 /* WrongViewController.swift */,
 				4ED800EC29ED946A00ABF0A1 /* GameResultViewController.swift */,
 				4ED800EE29ED948000ABF0A1 /* RoolsViewController.swift */,
@@ -155,6 +166,7 @@
 		4E954AB929ED065700ADECE0 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				8483576129F1633E006A1DE7 /* Sounds */,
 				4E954AA329ED05D600ADECE0 /* AppDelegate.swift */,
 				4E954AA529ED05D600ADECE0 /* SceneDelegate.swift */,
 				4E954AAC29ED05D900ADECE0 /* Assets.xcassets */,
@@ -166,6 +178,7 @@
 		4E954ABA29ED067200ADECE0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8483575D29F1628C006A1DE7 /* MusicModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -177,6 +190,24 @@
 				4EC07EEB29EF37B500027410 /* Extenstions.swift */,
 			);
 			path = Utilites;
+			sourceTree = "<group>";
+		};
+		8483575A29F16266006A1DE7 /* GameView */ = {
+			isa = PBXGroup;
+			children = (
+				8483575B29F16279006A1DE7 /* GameView.swift */,
+			);
+			path = GameView;
+			sourceTree = "<group>";
+		};
+		8483576129F1633E006A1DE7 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				8483576329F16347006A1DE7 /* 321.wav */,
+				8483576429F16347006A1DE7 /* lost.wav */,
+				8483576229F16347006A1DE7 /* win.wav */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,6 +274,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8483576729F16347006A1DE7 /* lost.wav in Resources */,
+				8483576629F16347006A1DE7 /* 321.wav in Resources */,
+				8483576529F16347006A1DE7 /* win.wav in Resources */,
 				4E954AB029ED05D900ADECE0 /* LaunchScreen.storyboard in Resources */,
 				4E954AAD29ED05D900ADECE0 /* Assets.xcassets in Resources */,
 			);
@@ -255,10 +289,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4ED800E729ED943D00ABF0A1 /* GameViewController.swift in Sources */,
+				8483575929F16259006A1DE7 /* GameViewController.swift in Sources */,
 				4E5DD48629F105D800E15AEE /* MainVC+ext.swift in Sources */,
 				4ED800ED29ED946A00ABF0A1 /* GameResultViewController.swift in Sources */,
 				4ED800E529ED942C00ABF0A1 /* CategoryViewController.swift in Sources */,
+				8483575C29F16279006A1DE7 /* GameView.swift in Sources */,
 				4E954AA829ED05D600ADECE0 /* MainViewController.swift in Sources */,
 				0039CF2529EFEDCD00AABED7 /* GreenButton.swift in Sources */,
 				4ED800EF29ED948000ABF0A1 /* RoolsViewController.swift in Sources */,
@@ -267,6 +302,7 @@
 				4ED800EB29ED945800ABF0A1 /* WrongViewController.swift in Sources */,
 				4ED800E929ED944B00ABF0A1 /* CorrectViewController.swift in Sources */,
 				0039CF1F29EFE25700AABED7 /* Resources.swift in Sources */,
+				8483575E29F1628C006A1DE7 /* MusicModel.swift in Sources */,
 				4E954AA429ED05D600ADECE0 /* AppDelegate.swift in Sources */,
 				4E954AA629ED05D600ADECE0 /* SceneDelegate.swift in Sources */,
 			);
