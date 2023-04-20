@@ -143,42 +143,47 @@ extension GameView {
             $0.titleLabel?.font = .systemFont(ofSize: 18, weight: .regular)
         }
         
-        NSLayoutConstraint.activate([
-            crocImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 60),
-            crocImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 116),
-            crocImage.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -120),
-            crocImage.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -642),
-            
-            timerLabel.topAnchor.constraint(equalTo: crocImage.bottomAnchor, constant: 57),
-            timerLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 25),
-            timerLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -26),
-            timerLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -540),
-            
-            mainWordLabel.topAnchor.constraint(equalTo: timerLabel.bottomAnchor, constant: 60),
-            mainWordLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 63.5),
-            mainWordLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -65),
-            mainWordLabel.heightAnchor.constraint(equalToConstant: 70),
-            
-            descriptionLabel.topAnchor.constraint(equalTo: mainWordLabel.topAnchor, constant: 70),
-            descriptionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 88.5),
-            descriptionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -89.5),
-            descriptionLabel.heightAnchor.constraint(equalToConstant: 70),
-            
-            greenGameButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 567),
-            greenGameButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12),
-            greenGameButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -12),
-            greenGameButton.heightAnchor.constraint(equalToConstant: 70),
-            
-            redGameButton.topAnchor.constraint(equalTo: greenGameButton.bottomAnchor, constant: 11),
-            redGameButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12),
-            redGameButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -12),
-            redGameButton.heightAnchor.constraint(equalToConstant: 70),
-            
-            grayGameButton.topAnchor.constraint(equalTo: redGameButton.bottomAnchor, constant: 11),
-            grayGameButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12),
-            grayGameButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -12),
-            grayGameButton.heightAnchor.constraint(equalToConstant: 70),
-        ])
+        crocImage.snp.makeConstraints { make in
+            make.centerX.equalToSuperview().inset(120)
+            make.bottom.equalToSuperview().inset(642)
+            make.top.equalToSuperview().inset(60)
+        }
+        
+        timerLabel.snp.makeConstraints { make in
+            make.top.equalTo(crocImage).inset(90)
+            make.centerX.equalToSuperview().inset(25)
+            make.bottom.equalToSuperview().inset(450)
+        }
+        
+        mainWordLabel.snp.makeConstraints { make in
+            make.top.equalTo(timerLabel).inset(210)
+            make.centerX.equalToSuperview().inset(65)
+            make.height.equalTo(70)
+        }
+        
+        descriptionLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview().inset(89)
+            make.bottom.equalTo(mainWordLabel).inset(-70)
+            make.height.equalTo(70)
+        }
+        
+        greenGameButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(567)
+            make.right.left.equalToSuperview().inset(12)
+            make.height.equalTo(70)
+        }
+        
+        redGameButton.snp.makeConstraints { make in
+            make.bottom.equalTo(greenGameButton).inset(-85)
+            make.right.left.equalToSuperview().inset(12)
+            make.height.equalTo(70)
+        }
+        
+        grayGameButton.snp.makeConstraints { make in
+            make.bottom.equalTo(redGameButton).inset(-85)
+            make.right.left.equalToSuperview().inset(12)
+            make.height.equalTo(70)
+        }
         
     }
     
