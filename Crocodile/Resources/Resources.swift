@@ -17,5 +17,6 @@ enum Resources {
 
     enum Colors {
         static let greenButtonColor = "greenButtonColor"
+        static let orangeButtonColor = "orangeButtonColor"
     }
 }

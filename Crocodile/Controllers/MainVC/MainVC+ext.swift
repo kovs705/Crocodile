@@ -1,34 +1,27 @@
 //
-//  ViewController.swift
+//  MainVC+ext.swift
 //  Crocodile
 //
-//  Created by Kovs on 17.04.2023.
+//  Created by Kovs on 20.04.2023.
 //
 
 import UIKit
 import SnapKit
 
-class MainViewController: UIViewController {
-
+class MainVC: UIViewController {
+    
+    let stackView = UIStackView()
+    
     let backgroundImage = UIImageView(image: UIImage(named: Resources.Image.backgroundImage))
     let crocodileImage = UIImageView(image: UIImage(named: Resources.Image.crocodileImage))
-    let startGameButton = GreenButton(title: "Старт игры")
-    let rulesButton = GreenButton(title: "Правила игры")
+    
+    let startGameButton = GreenButton(backgroundColor: Resources.Colors.greenButtonColor, title: "Старт игры")
+    let rulesButton = GreenButton(backgroundColor: Resources.Colors.greenButtonColor, title: "Правила игры")
+    let resultsButton = GreenButton(backgroundColor: Resources.Colors.orangeButtonColor, title: "Результаты")
+    
     let grassImage1 = UIImageView(image: UIImage(named: Resources.Image.grassImage))
     let grassImage2 = UIImageView(image: UIImage(named: Resources.Image.grassImage))
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        setupBackgroundImage()
-        setupCrocodileImage()
-        setupStartGameButton()
-        setupRulesGameButton()
-        setupGrassImage()
-
-        
-    }
-
+    
     func setupBackgroundImage() {
         view.addSubview(backgroundImage)
         backgroundImage.snp.makeConstraints { make in
@@ -47,32 +40,60 @@ class MainViewController: UIViewController {
             make.right.equalToSuperview().offset(-54)
         }
     }
+    
+    
+    func setupStackView() {
+        view.addSubview(stackView)
+        
+        stackView.backgroundColor = .clear
+        stackView.axis = .vertical
+        stackView.spacing = 25
+        stackView.alignment = .center
+        
+        stackView.snp.makeConstraints { make in
+            make.top.equalTo(crocodileImage.snp.bottom).offset(48)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+        }
+        
+        stackView.addArrangedSubview(startGameButton)
+        stackView.addArrangedSubview(rulesButton)
+        stackView.addArrangedSubview(resultsButton)
+    }
 
     func setupStartGameButton() {
-        view.addSubview(startGameButton)
+//        view.addSubview(startGameButton)
         startGameButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(crocodileImage.snp.bottom).offset(48)
+//            make.centerX.equalToSuperview()
+//            make.top.equalTo(crocodileImage.snp.bottom).offset(48)
             make.width.equalTo(274)
             make.height.equalTo(83)
         }
     }
 
     func setupRulesGameButton() {
-        view.addSubview(rulesButton)
+//        view.addSubview(rulesButton)
         rulesButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(startGameButton.snp.bottom).offset(48)
+//            make.centerX.equalToSuperview()
+//            make.top.equalTo(startGameButton.snp.bottom).offset(48)
             make.width.equalTo(211)
-            make.height.equalTo(63)
+            make.height.equalTo(65)
         }
     }
+    
+    func setupResultsButton() {
+        resultsButton.snp.makeConstraints { make in
+            make.width.equalTo(211)
+            make.height.equalTo(65)
+        }
+    }
+    
 
     func setupGrassImage() {
         view.addSubview(grassImage1)
         grassImage1.snp.makeConstraints { make in
             make.bottom.equalToSuperview()
-            make.left.equalToSuperview()
+            make.leading.equalToSuperview()
             make.width.equalTo(95)
             make.height.equalTo(70)
         }
@@ -80,7 +101,7 @@ class MainViewController: UIViewController {
         view.addSubview(grassImage2)
         grassImage2.snp.makeConstraints { make in
             make.bottom.equalToSuperview()
-            make.right.equalToSuperview()
+            make.trailing.equalToSuperview()
             make.width.equalTo(95)
             make.height.equalTo(70)
         }
