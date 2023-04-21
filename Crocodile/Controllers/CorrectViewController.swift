@@ -12,8 +12,9 @@ class CorrectViewController: UIViewController {
     let youGetLabel = UILabel() // "Вы получаете"
     let nameScoreLabel = UILabel() // "ОЧКИ"
     var nextMoveLabel = UILabel() // "Слудующий ход - "ИМЯ КОМАНДЫ""
-    var scoresLabel = UILabel()
-    let scoresNameLabel = UILabel() // Очки
+    var currentScoresLabel = UILabel()
+    let currentScoresNameLabel = UILabel() // Очки
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBackgroundImage()
@@ -26,6 +27,7 @@ class CorrectViewController: UIViewController {
         setupTeamInformationImage()
         setupPictureTeamImage()
         setupTeamNameLabel()
+        setupCurrentScoresLabel()
     }
     
     func setupBackgroundImage() {
@@ -174,8 +176,16 @@ class CorrectViewController: UIViewController {
         }
     }
     
-    func setupScoresLabel() {
-        print()
+    func setupCurrentScoresLabel() {
+        view.addSubview(currentScoresLabel)
+        currentScoresLabel.text = "1"
+        currentScoresLabel.textColor = .black
+        currentScoresLabel.font = UIFont.systemFont(ofSize: 55)
+        currentScoresLabel.contentMode = .center
+        currentScoresLabel.snp.makeConstraints { make in
+            make.right.equalTo(teamInformationImage.snp.right).offset(-35)
+            make.centerY.equalTo(teamInformationImage).offset(-10)
+        }
     }
     
     
