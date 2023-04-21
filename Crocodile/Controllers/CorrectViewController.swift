@@ -6,13 +6,14 @@ class CorrectViewController: UIViewController {
     let greenRectangleImage = UIImageView(image: UIImage(named: Resources.Image.greenRectangle))
     let correctStarImage = UIImageView(image: UIImage(named: Resources.Image.correctStarImage))
     let teamInformationImage = UIImageView(image: UIImage(named: Resources.Image.teamInformationImage))
-    let pictureTeamImage = UIImageView(image: UIImage(named: Resources.Image.cowboyImage))
+    var pictureTeamImage = UIImageView(image: UIImage(named: Resources.Image.cowboyImage))
     let teamNameLabel = UILabel()
     let congratulationsLabel = UILabel() // "Поздравляем"
     let youGetLabel = UILabel() // "Вы получаете"
     let nameScoreLabel = UILabel() // "ОЧКИ"
-    let nextMoveLabel = UILabel() // "Слудующий ход - "ИМЯ КОМАНДЫ""
-
+    var nextMoveLabel = UILabel() // "Слудующий ход - "ИМЯ КОМАНДЫ""
+    var scoresLabel = UILabel()
+    let scoresNameLabel = UILabel() // Очки
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBackgroundImage()
@@ -37,6 +38,7 @@ class CorrectViewController: UIViewController {
         }
     }
     
+    // Зеленый Прямоугольник
     func setupGreenRectangleImage() {
         view.addSubview(greenRectangleImage)
         greenRectangleImage.snp.makeConstraints { make in
@@ -49,6 +51,7 @@ class CorrectViewController: UIViewController {
 
         }
     }
+    // Поздравляем
     func setupCongratulationsLabel(){
         view.addSubview(congratulationsLabel)
         congratulationsLabel.text = "Поздравляем"
@@ -66,12 +69,12 @@ class CorrectViewController: UIViewController {
             //make.height.equalTo(22)
             make.height.equalTo(28)
             
-            make.top.equalToSuperview().offset(322)
+            make.top.equalTo(greenRectangleImage.snp.top).offset(47)
             make.centerX.equalToSuperview()
             
         }
     }
-    
+    // Вы получаете
     func setupYouGetLabel() {
         view.addSubview(youGetLabel)
         youGetLabel.text = "Вы получаете"
@@ -87,6 +90,7 @@ class CorrectViewController: UIViewController {
         }
     }
     
+    // звезда
     func setupCorrectStarImage() {
         view.addSubview(correctStarImage)
         correctStarImage.snp.makeConstraints { make in
@@ -97,8 +101,10 @@ class CorrectViewController: UIViewController {
         }
     }
     
+    
     // не понимаю почему в фигме добавляется одно ОЧКИ, а написано ОЧКИ
     // мб это исправить?
+    
     func setupNameScoreLabel() {
         view.addSubview(nameScoreLabel)
         nameScoreLabel.text = "ОЧКИ"
@@ -115,6 +121,7 @@ class CorrectViewController: UIViewController {
         }
     }
     
+    //Cледующий ход - ...
     func setupNextMoveLabel() {
         view.addSubview(nextMoveLabel)
         nextMoveLabel.text = "Следующий ход - \"ИМЯ КОМАНДЫ\""
@@ -131,6 +138,7 @@ class CorrectViewController: UIViewController {
         }
     }
     
+    // белый прямоугольник сверху
     func setupTeamInformationImage() {
         view.addSubview(teamInformationImage)
         teamInformationImage.snp.makeConstraints { make in
@@ -142,6 +150,7 @@ class CorrectViewController: UIViewController {
         }
     }
     
+    // картинка комманды
     func setupPictureTeamImage() {
         view.addSubview(pictureTeamImage)
         pictureTeamImage.snp.makeConstraints { make in
@@ -152,6 +161,7 @@ class CorrectViewController: UIViewController {
         }
     }
     
+    // имя команды
     func setupTeamNameLabel() {
         view.addSubview(teamNameLabel)
         teamNameLabel.text = "Ковбои"
@@ -162,8 +172,12 @@ class CorrectViewController: UIViewController {
             make.left.equalTo(pictureTeamImage.snp.right).offset(34)
             make.centerY.equalTo(teamInformationImage)
         }
-        
     }
+    
+    func setupScoresLabel() {
+        print()
+    }
+    
     
     
     
