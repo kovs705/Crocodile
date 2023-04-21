@@ -5,7 +5,7 @@ class CorrectViewController: UIViewController {
     let backgroundImage = UIImageView(image: UIImage(named: Resources.Image.backgroundImage))
     let greenRectangleImage = UIImageView(image: UIImage(named: Resources.Image.greenRectangle))
     let correctStarImage = UIImageView(image: UIImage(named: Resources.Image.correctStarImage))
-    
+    let teamInformationImage = UIImageView(image: UIImage(named: Resources.Image.teamInformationImage))
     
     let congratulationsLabel = UILabel() // "Поздравляем"
     let youGetLabel = UILabel() // "Вы получаете"
@@ -21,6 +21,7 @@ class CorrectViewController: UIViewController {
         setupCorrectStarImage()
         setupNameScoreLabel()
         setupNextMoveLabel()
+        setupteamInformationImage()
     }
     
     func setupBackgroundImage() {
@@ -36,10 +37,12 @@ class CorrectViewController: UIViewController {
     func setupGreenRectangleImage() {
         view.addSubview(greenRectangleImage)
         greenRectangleImage.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(264)
+            make.top.equalToSuperview().offset(275)
             make.centerX.equalToSuperview()
-            make.height.equalTo(301)
-            make.width.equalTo(351)
+            
+            make.height.equalTo(325)
+            make.left.equalTo(12)
+            
 
         }
     }
@@ -60,7 +63,7 @@ class CorrectViewController: UIViewController {
             //make.height.equalTo(22)
             make.height.equalTo(28)
             
-            make.top.equalToSuperview().offset(300)
+            make.top.equalToSuperview().offset(322)
             make.centerX.equalToSuperview()
             
         }
@@ -76,7 +79,7 @@ class CorrectViewController: UIViewController {
         youGetLabel.snp.makeConstraints { make in
             // маленькое расстояние получается между "Поздравляем" и "Вы получаете" если делать по макету
             //make.top.equalTo(congratulationsLabel.snp.top).offset(24)
-            make.top.equalTo(congratulationsLabel.snp.top).offset(40)
+            make.top.equalTo(congratulationsLabel.snp.top).offset(55)
             make.centerX.equalToSuperview()
         }
     }
@@ -96,7 +99,7 @@ class CorrectViewController: UIViewController {
     func setupNameScoreLabel() {
         view.addSubview(nameScoreLabel)
         nameScoreLabel.text = "ОЧКИ"
-        nameScoreLabel.textColor =  #colorLiteral(red: 1, green: 0.9096955657, blue: 0, alpha: 1)
+        nameScoreLabel.textColor = .yellow
         nameScoreLabel.font = UIFont.systemFont(ofSize: 13)
         nameScoreLabel.contentMode = .center
         
@@ -120,10 +123,22 @@ class CorrectViewController: UIViewController {
             
             // вот тут опять расстояние примерное
             make.top.equalTo(nameScoreLabel.snp.bottom).offset(20)
+            make.bottom.equalTo(greenRectangleImage.snp.bottom).offset(-44)
             make.centerX.equalToSuperview()
         }
     }
-
+    
+    func setupteamInformationImage() {
+        view.addSubview(teamInformationImage)
+        teamInformationImage.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().offset(70)
+            make.left.equalToSuperview()
+            make.bottom.equalTo(greenRectangleImage.snp.top).offset(-58)
+            
+            
+        }
+        
+    }
     
 }
-
