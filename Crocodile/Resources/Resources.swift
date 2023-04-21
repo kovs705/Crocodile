@@ -17,6 +17,8 @@ enum Resources {
         static let greenRectangle = "greenRectangle"
         static let teamInformationImage = "teamInformationImage"
         static let cowboyImage = "cowboyImage"
+        static let eclipseImage = "eclipseImage"
+        static let redRectangleImage = "redRectangleImage"
     }
 
     enum Colors {
