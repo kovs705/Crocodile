@@ -14,6 +14,9 @@ class CorrectViewController: UIViewController {
     var nextMoveLabel = UILabel() // "Слудующий ход - "ИМЯ КОМАНДЫ""
     var currentScoresLabel = UILabel()
     let currentScoresNameLabel = UILabel() // Очки
+    let oneScoreLabel = UILabel()
+    let passTheMoveButton = GreenButton(title: "Передать ход")
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +32,8 @@ class CorrectViewController: UIViewController {
         setupTeamNameLabel()
         setupCurrentScoresLabel()
         setupCurrentScoresNameLabel()
+        setupOneScoreLabel()
+        setupPassTheMoveButton()
     }
     
     func setupBackgroundImage() {
@@ -202,6 +207,25 @@ class CorrectViewController: UIViewController {
         }
     }
     
+    func setupOneScoreLabel() {
+        view.addSubview(oneScoreLabel)
+        oneScoreLabel.text = "1"
+        oneScoreLabel.contentMode = .center
+        oneScoreLabel.font = UIFont.systemFont(ofSize: 60)
+        oneScoreLabel.textColor = .white
+        oneScoreLabel.snp.makeConstraints { make in
+            make.centerX.equalTo(correctStarImage).offset(-3)
+            make.centerY.equalTo(correctStarImage)
+        }
+    }
     
-    
+    func setupPassTheMoveButton() {
+        view.addSubview(passTheMoveButton)
+        passTheMoveButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.left.equalToSuperview().offset(12)
+            make.bottom.equalToSuperview().offset(-46)
+            make.height.equalTo(60)
+        }
+    }
 }
