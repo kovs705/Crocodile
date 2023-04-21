@@ -6,7 +6,8 @@ class CorrectViewController: UIViewController {
     let greenRectangleImage = UIImageView(image: UIImage(named: Resources.Image.greenRectangle))
     let correctStarImage = UIImageView(image: UIImage(named: Resources.Image.correctStarImage))
     let teamInformationImage = UIImageView(image: UIImage(named: Resources.Image.teamInformationImage))
-    
+    let pictureTeamImage = UIImageView(image: UIImage(named: Resources.Image.cowboyImage))
+    let teamNameLabel = UILabel()
     let congratulationsLabel = UILabel() // "Поздравляем"
     let youGetLabel = UILabel() // "Вы получаете"
     let nameScoreLabel = UILabel() // "ОЧКИ"
@@ -21,7 +22,9 @@ class CorrectViewController: UIViewController {
         setupCorrectStarImage()
         setupNameScoreLabel()
         setupNextMoveLabel()
-        setupteamInformationImage()
+        setupTeamInformationImage()
+        setupPictureTeamImage()
+        setupTeamNameLabel()
     }
     
     func setupBackgroundImage() {
@@ -128,7 +131,7 @@ class CorrectViewController: UIViewController {
         }
     }
     
-    func setupteamInformationImage() {
+    func setupTeamInformationImage() {
         view.addSubview(teamInformationImage)
         teamInformationImage.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
@@ -136,9 +139,32 @@ class CorrectViewController: UIViewController {
             make.left.equalToSuperview()
             make.bottom.equalTo(greenRectangleImage.snp.top).offset(-58)
             
-            
+        }
+    }
+    
+    func setupPictureTeamImage() {
+        view.addSubview(pictureTeamImage)
+        pictureTeamImage.snp.makeConstraints { make in
+            make.width.equalTo(56)
+            make.height.equalTo(56)
+            make.left.equalTo(teamInformationImage.snp.left).offset(27)
+            make.centerY.equalTo(teamInformationImage)
+        }
+    }
+    
+    func setupTeamNameLabel() {
+        view.addSubview(teamNameLabel)
+        teamNameLabel.text = "Ковбои"
+        teamNameLabel.textColor = .black
+        teamNameLabel.font = UIFont.systemFont(ofSize: 20)
+        teamNameLabel.contentMode = .center
+        teamNameLabel.snp.makeConstraints { make in
+            make.left.equalTo(pictureTeamImage.snp.right).offset(34)
+            make.centerY.equalTo(teamInformationImage)
         }
         
     }
+    
+    
     
 }
