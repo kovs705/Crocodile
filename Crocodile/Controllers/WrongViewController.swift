@@ -8,10 +8,10 @@ class WrongViewController: UIViewController {
     let teamInformationImage = UIImageView(image: UIImage(named: Resources.Image.teamInformationImage))
     var pictureTeamImage = UIImageView(image: UIImage(named: Resources.Image.cowboyImage))
     let teamNameLabel = UILabel()
-    let ohhLabel = UILabel() // "Поздравляем"
-    let youDontGetLabel = UILabel() // "Вы получаете"
+    let ohhLabel = UILabel() //
+    let youDontGetLabel = UILabel() //
     let nameScoreLabel = UILabel() // "ОЧКИ"
-    var nextMoveLabel = UILabel() // "Слудующий ход - "ИМЯ КОМАНДЫ""
+    var nextMoveLabel = UILabel() // "Следующий ход - "ИМЯ КОМАНДЫ""
     var currentScoresLabel = UILabel()
     let currentScoresNameLabel = UILabel() // Очки
     let zeroScoreLabel = UILabel()
@@ -28,6 +28,11 @@ class WrongViewController: UIViewController {
         setupNextMoveLabel()
         setupZeroScoreLabel()
         setupPassTheMoveButton()
+        setupTeamInformationImage()
+        setupPictureTeamImage()
+        setupTeamNameLabel()
+        setupCurrentScoresLabel()
+        setupCurrentScoresNameLabel()
     }
     
     func setupBackgroundImage() {
@@ -132,4 +137,65 @@ class WrongViewController: UIViewController {
             make.height.equalTo(60)
         }
     }
+    
+    // белый прямоугольник сверху
+    func setupTeamInformationImage() {
+        view.addSubview(teamInformationImage)
+        teamInformationImage.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().offset(70)
+            make.left.equalToSuperview()
+            make.bottom.equalTo(redRectangleImage.snp.top).offset(-58)
+            
+        }
+    }
+    // картинка комманды
+    func setupPictureTeamImage() {
+        view.addSubview(pictureTeamImage)
+        pictureTeamImage.snp.makeConstraints { make in
+            make.width.equalTo(56)
+            make.height.equalTo(56)
+            make.left.equalTo(teamInformationImage.snp.left).offset(27)
+            make.centerY.equalTo(teamInformationImage)
+        }
+    }
+    
+    // имя команды
+    func setupTeamNameLabel() {
+        view.addSubview(teamNameLabel)
+        teamNameLabel.text = "Ковбои"
+        teamNameLabel.textColor = .black
+        teamNameLabel.font = UIFont.systemFont(ofSize: 20)
+        teamNameLabel.contentMode = .center
+        teamNameLabel.snp.makeConstraints { make in
+            make.left.equalTo(pictureTeamImage.snp.right).offset(34)
+            make.centerY.equalTo(teamInformationImage)
+        }
+    }
+    
+    func setupCurrentScoresLabel() {
+        view.addSubview(currentScoresLabel)
+        currentScoresLabel.text = "2"
+        currentScoresLabel.textColor = .black
+        currentScoresLabel.font = UIFont.systemFont(ofSize: 55)
+        currentScoresLabel.contentMode = .center
+        currentScoresLabel.snp.makeConstraints { make in
+            make.right.equalTo(teamInformationImage.snp.right).offset(-30)
+            make.centerY.equalTo(teamInformationImage).offset(-10)
+        }
+    }
+    
+    func setupCurrentScoresNameLabel() {
+        view.addSubview(currentScoresNameLabel)
+        currentScoresNameLabel.textColor = .black
+        currentScoresNameLabel.text = "Очки"
+        currentScoresNameLabel.font = UIFont.systemFont(ofSize: 15)
+        currentScoresNameLabel.contentMode = .center
+        currentScoresNameLabel.snp.makeConstraints { make in
+            
+            make.right.equalTo(teamInformationImage.snp.right).offset(-30)
+            make.bottom.equalTo(teamInformationImage.snp.bottom).offset(-38)
+        }
+    }
+    
 }
