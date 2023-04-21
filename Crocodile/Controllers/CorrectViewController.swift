@@ -28,6 +28,7 @@ class CorrectViewController: UIViewController {
         setupPictureTeamImage()
         setupTeamNameLabel()
         setupCurrentScoresLabel()
+        setupCurrentScoresNameLabel()
     }
     
     func setupBackgroundImage() {
@@ -188,6 +189,18 @@ class CorrectViewController: UIViewController {
         }
     }
     
+    func setupCurrentScoresNameLabel() {
+        view.addSubview(currentScoresNameLabel)
+        currentScoresNameLabel.textColor = .black
+        currentScoresNameLabel.text = "Очки"
+        currentScoresNameLabel.font = UIFont.systemFont(ofSize: 15)
+        currentScoresNameLabel.contentMode = .center
+        currentScoresNameLabel.snp.makeConstraints { make in
+            
+            make.right.equalTo(teamInformationImage.snp.right).offset(-30)
+            make.bottom.equalTo(teamInformationImage.snp.bottom).offset(-38)
+        }
+    }
     
     
     
