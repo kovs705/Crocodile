@@ -43,14 +43,14 @@ class CategoryVC: UIViewController {
     
     
     @objc func buttonPressed() {
-        let categoryVC = TeamViewController()
-        navigationController?.pushViewController(categoryVC, animated: true)
+        let vc = GameViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     
     func setImageCollection() {
         let backgroundImageView = UIImageView(image: backgroundImage)
-        backgroundImageView.contentMode = .scaleAspectFill
+        backgroundImageView.contentMode = .scaleAspectFit
         collectionView.backgroundView = backgroundImageView
     }
     
