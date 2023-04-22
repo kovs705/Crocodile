@@ -35,7 +35,7 @@ class MainVC: UIViewController {
     func setupCrocodileImage() {
         view.addSubview(crocodileImage)
         crocodileImage.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(172)
+            make.top.equalToSuperview().offset(130)
             make.left.equalToSuperview().offset(54)
             make.right.equalToSuperview().offset(-54)
         }
@@ -69,6 +69,13 @@ class MainVC: UIViewController {
             make.width.equalTo(274)
             make.height.equalTo(83)
         }
+        
+        startGameButton.addTarget(self, action: #selector(startPressed), for: .touchUpInside)
+    }
+    
+    @objc func startPressed() {
+        let teamVC = TeamViewController()
+        navigationController?.pushViewController(teamVC, animated: true)
     }
 
     func setupRulesGameButton() {

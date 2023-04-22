@@ -19,4 +19,9 @@ enum Resources {
         static let greenButtonColor = "greenButtonColor"
         static let orangeButtonColor = "orangeButtonColor"
     }
+    
+    enum UIConstants {
+        static let collectionWeight: CGFloat = 351
+        static let collectionHeight: CGFloat = 96
+    }
 }
