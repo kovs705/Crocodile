@@ -8,52 +8,9 @@
 import UIKit
 import SnapKit
 
-class CategoryViewController: UIViewController {
-    
-    // MARK: - Properties
-    
-    let backgroundImage = UIImage(named: "backgroundImage")
-    private var infoCell = Info.getCategory()
-    var selectedCellIndex: Set<IndexPath> = []
-    
-    // MARK: - Private properties
-    
-    private var collectionView: UICollectionView = {
-        
-       let layot = UICollectionViewFlowLayout()
-        layot.scrollDirection = .vertical
-        layot.minimumInteritemSpacing = 16
-        layot.minimumLineSpacing = 16
-        layot.sectionInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
-        layot.itemSize = CGSize(width: 351, height: 96)
-        
-        let collectionV = UICollectionView(frame: .zero, collectionViewLayout: layot)
-        collectionV.backgroundColor = .clear
-        
-        return collectionV
-    }()
-    
-    private lazy var nextButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Начать игру", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.5230828524, green: 0.7005900741, blue: 0.2440984249, alpha: 1)
-        button.layer.cornerRadius = 15
-        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-        return button
-    }()
-    
-    
-    // MARK: - Private constants
-    
-    private enum UIConstants {
-        static let collectionWeight: CGFloat = 351
-        static let collectionHeight: CGFloat = 96
-    }
+class CategoryViewController: CategoryVC {
     
     // MARK: - View's lifecycle
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Категории"
@@ -63,22 +20,6 @@ class CategoryViewController: UIViewController {
         setImageCollection()
         
     }
-    
-    // Mark: Methods
-    
-    @objc func buttonPressed() {
-        let categoryVC = TeamViewController()
-        navigationController?.pushViewController(categoryVC, animated: true)
-    }
-    
-    // MARK: - Private methods
-    
-    private func setImageCollection() {
-        let backgroundImageView = UIImageView(image: backgroundImage)
-        backgroundImageView.contentMode = .scaleAspectFill
-        collectionView.backgroundView = backgroundImageView
-    }
-    
     
 }
 
@@ -109,51 +50,5 @@ extension CategoryViewController {
         }
         
     }
-}
-
-// Mark: - Data Source
-
-extension CategoryViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        infoCell.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath) as? CategoryCollectionViewCell else { return UICollectionViewCell() }
-        
-        cell.layer.cornerRadius = 15
-        let info = infoCell[indexPath.item]
-        cell.isSelected = selectedCellIndex.contains(indexPath)
-        cell.configure(with: info, isSelected: true)
-        
-        
-        return cell
-    }
-    
-}
-
-// MARK: - DelegateFlowLayout
-
-extension CategoryViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: UIConstants.collectionWeight, height: UIConstants.collectionHeight)
-    }
-}
-
-// MARK: - Delegate
-
-extension CategoryViewController: UICollectionViewDelegate {
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell {
-            cell.isSelected = !cell.isSelected
-            if cell.isSelected {
-                selectedCellIndex.insert(indexPath)
-            } else {
-                selectedCellIndex.remove(indexPath)
-            }
-        }
-    }
-    
 }
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RoolsViewController : UIViewController {
+class RulesViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
