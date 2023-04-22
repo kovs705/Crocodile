@@ -15,7 +15,7 @@ class CorrectViewController: UIViewController {
     var currentScoresLabel = UILabel()
     let currentScoresNameLabel = UILabel() // Очки
     let oneScoreLabel = UILabel()
-    let passTheMoveButton = GreenButton(title: "Передать ход")
+    let passTheMoveButton = GreenButton(backgroundColor: Resources.Colors.greenButtonColor, title: "Передать ход")
     
     
     override func viewDidLoad() {
