@@ -67,7 +67,7 @@ class CategoryViewController: UIViewController {
     // Mark: Methods
     
     @objc func buttonPressed() {
-        let categoryVC = GameViewController()
+        let categoryVC = TeamViewController()
         navigationController?.pushViewController(categoryVC, animated: true)
     }
     
