@@ -14,6 +14,7 @@ class GameViewController: UIViewController {
     private let musicPlayer = MusicModel()
     private var seconds = 60
     private var timer = Timer()
+    private var remindTimer = Timer()
     private var isTimerRunning = false
     
     override func loadView() {
@@ -29,10 +30,14 @@ class GameViewController: UIViewController {
     
     private func runTimer() {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        remindTimer = Timer.scheduledTimer(timeInterval: 49.5, target: self, selector: #selector(reminderTenSecond), userInfo: nil, repeats: false)
+    }
+    
+    @objc private func reminderTenSecond() {
+        musicPlayer.playSound(nameOfMusic: "321")
     }
     
     @objc private func updateTimer() {
-        
         if seconds < 1 {
             timer.invalidate()
             // что тут должно быть?

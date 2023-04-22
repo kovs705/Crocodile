@@ -62,21 +62,21 @@ final class GameView: UIView {
     }()
     
     private lazy var greenGameButton : UIButton = {
-        let button = UIButton ()
+        let button = UIButton(type: .system)
         button.setTitle("Правильно", for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.523082912, green: 0.7005900741, blue: 0.2440984249, alpha: 1)
         return button
     }()
     
     private lazy var redGameButton : UIButton = {
-        let button = UIButton ()
+        let button = UIButton(type: .system)
         button.setTitle("Нарушил правила", for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.9019607843, green: 0.2745098039, blue: 0.2745098039, alpha: 1)
         return button
     }()
     
     private lazy var grayGameButton : UIButton = {
-        let button = UIButton ()
+        let button = UIButton(type: .system)
         button.setTitle("Сбросить", for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.5490196078, green: 0.568627451, blue: 0.5882352941, alpha: 1)
         return button
@@ -123,7 +123,7 @@ final class GameView: UIView {
     }
 }
 
-//MARK: - extension
+//MARK: - UI setting extension
 
 extension GameView {
     private func setupViews() {
@@ -139,8 +139,8 @@ extension GameView {
             $0.layer.shadowRadius = 5
             $0.layer.cornerRadius = 15
             $0.layer.masksToBounds = false
-            $0.tintColor = .white
-            $0.titleLabel?.font = .systemFont(ofSize: 18, weight: .regular)
+            $0.setTitleColor(.white, for: .normal)
+            $0.titleLabel?.font = .systemFont(ofSize: 20, weight: .regular)
         }
         
         crocImage.snp.makeConstraints { make in
@@ -199,7 +199,7 @@ extension GameView {
 }
 
 extension UIButton {
-    func blink(enabled: Bool = true, duration: CFTimeInterval = 0.1, stopAfter: CFTimeInterval = 0.4 ) {
+    func blink(enabled: Bool = true, duration: CFTimeInterval = 0.1, stopAfter: CFTimeInterval = 0.3 ) {
         enabled ? (UIView.animate(
             withDuration: duration,
             delay: 0.0,

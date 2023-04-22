@@ -152,10 +152,10 @@
 		4E954AB729ED05E400ADECE0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8483576829F16C2D006A1DE7 /* GameVC */,
 				4E5DD48729F105DD00E15AEE /* MainVC */,
 				4ED800E429ED942C00ABF0A1 /* CategoryViewController.swift */,
 				4ED800E829ED944B00ABF0A1 /* CorrectViewController.swift */,
-				8483575829F16259006A1DE7 /* GameViewController.swift */,
 				4ED800EA29ED945800ABF0A1 /* WrongViewController.swift */,
 				4ED800EC29ED946A00ABF0A1 /* GameResultViewController.swift */,
 				4ED800EE29ED948000ABF0A1 /* RoolsViewController.swift */,
@@ -208,6 +208,14 @@
 				8483576229F16347006A1DE7 /* win.wav */,
 			);
 			path = Sounds;
+			sourceTree = "<group>";
+		};
+		8483576829F16C2D006A1DE7 /* GameVC */ = {
+			isa = PBXGroup;
+			children = (
+				8483575829F16259006A1DE7 /* GameViewController.swift */,
+			);
+			path = GameVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
