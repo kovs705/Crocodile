@@ -199,7 +199,7 @@ extension GameView {
 }
 
 extension UIButton {
-    func blink(enabled: Bool = true, duration: CFTimeInterval = 0.1, stopAfter: CFTimeInterval = 0.3 ) {
+    func blink(enabled: Bool = true, duration: CFTimeInterval = 0.2, stopAfter: CFTimeInterval = 2.0 ) {
         enabled ? (UIView.animate(
             withDuration: duration,
             delay: 0.0,

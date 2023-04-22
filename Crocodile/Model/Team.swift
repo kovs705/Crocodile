@@ -36,6 +36,7 @@ enum tError: String, Error {
 }
 
 enum TeamManager {
+    static public let shared = TeamManager.self
     static private let defautls = UserDefaults.standard
     
     enum Keys {
@@ -98,7 +99,6 @@ enum TeamManager {
         do {
             let decoder = JSONDecoder()
             let teams = try decoder.decode([Team].self, from: teamsData)
-            
             completed(.success(teams))
         } catch {
             completed(.failure(.smthWrong))
@@ -111,7 +111,6 @@ enum TeamManager {
         do {
             let encoder = JSONEncoder()
             let encodedTeams = try encoder.encode(teams)
-            
             defautls.set(encodedTeams, forKey: Keys.teamsKey)
             return nil
         } catch {
