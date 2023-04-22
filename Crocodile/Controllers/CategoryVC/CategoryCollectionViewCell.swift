@@ -10,12 +10,9 @@ import SnapKit
 
 class CategoryCollectionViewCell: UICollectionViewCell {
     
-    
     static let identifier = "cell1"
     
     private var cellInfo = Info.getCategory()
-    
-    //var teamInfo: Info!
     
     // MARK: - Properties
     
@@ -29,8 +26,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     
     private let categoryImage: UIImageView = {
        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        //imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFit
         imageView.layer.cornerRadius = imageView.frame.size.width / 2
         imageView.layer.masksToBounds = true
         return imageView
@@ -59,7 +55,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     // MARK: - Public method
     
     func configure(with teamName: Info, isSelected: Bool) {
-        nameLable.text = "\(teamName.name) + 1" // + 1 убрать как в предыдущем варианте
+        nameLable.text = teamName.name
         categoryImage.image = UIImage(named: teamName.image)
         checkmarkImageView.isHidden = !isSelected
         
