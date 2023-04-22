@@ -17,6 +17,9 @@
 		4E31403F29F3F6BA00B1AC84 /* TeamVC+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E31403E29F3F6BA00B1AC84 /* TeamVC+Ext.swift */; };
 		4E31404729F43EFB00B1AC84 /* CategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E31404629F43EFB00B1AC84 /* CategoryVC.swift */; };
 		4E31404929F43F8500B1AC84 /* CategoryVC+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E31404829F43F8500B1AC84 /* CategoryVC+Ext.swift */; };
+		4E31405329F490B800B1AC84 /* MusicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E31405229F490B800B1AC84 /* MusicModel.swift */; };
+		4E31405529F490E800B1AC84 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E31405429F490E800B1AC84 /* GameViewController.swift */; };
+		4E31405729F4910E00B1AC84 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E31405629F4910E00B1AC84 /* GameView.swift */; };
 		4E5DD48629F105D800E15AEE /* MainVC+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5DD48529F105D800E15AEE /* MainVC+ext.swift */; };
 		4E954AA429ED05D600ADECE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E954AA329ED05D600ADECE0 /* AppDelegate.swift */; };
 		4E954AA629ED05D600ADECE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E954AA529ED05D600ADECE0 /* SceneDelegate.swift */; };
@@ -43,6 +46,9 @@
 		4E31403E29F3F6BA00B1AC84 /* TeamVC+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TeamVC+Ext.swift"; sourceTree = "<group>"; };
 		4E31404629F43EFB00B1AC84 /* CategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryVC.swift; sourceTree = "<group>"; };
 		4E31404829F43F8500B1AC84 /* CategoryVC+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryVC+Ext.swift"; sourceTree = "<group>"; };
+		4E31405229F490B800B1AC84 /* MusicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicModel.swift; sourceTree = "<group>"; };
+		4E31405429F490E800B1AC84 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		4E31405629F4910E00B1AC84 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		4E5DD48529F105D800E15AEE /* MainVC+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainVC+ext.swift"; sourceTree = "<group>"; };
 		4E954AA029ED05D600ADECE0 /* Crocodile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Crocodile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E954AA329ED05D600ADECE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -207,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				045D2CAC29F146180019CB00 /* Info.swift */,
+				4E31405229F490B800B1AC84 /* MusicModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -223,6 +230,7 @@
 		8483575A29F16266006A1DE7 /* GameView */ = {
 			isa = PBXGroup;
 			children = (
+				4E31405629F4910E00B1AC84 /* GameView.swift */,
 			);
 			path = GameView;
 			sourceTree = "<group>";
@@ -237,6 +245,7 @@
 		8483576829F16C2D006A1DE7 /* GameVC */ = {
 			isa = PBXGroup;
 			children = (
+				4E31405429F490E800B1AC84 /* GameViewController.swift */,
 			);
 			path = GameVC;
 			sourceTree = "<group>";
@@ -325,9 +334,11 @@
 				045D2CAB29F145B80019CB00 /* TeamCollectionViewCell.swift in Sources */,
 				4E954AA829ED05D600ADECE0 /* MainViewController.swift in Sources */,
 				0039CF2529EFEDCD00AABED7 /* GreenButton.swift in Sources */,
+				4E31405329F490B800B1AC84 /* MusicModel.swift in Sources */,
 				4ED800EF29ED948000ABF0A1 /* RulesViewController.swift in Sources */,
 				4EC07EEC29EF37B500027410 /* Extenstions.swift in Sources */,
 				4ED800EB29ED945800ABF0A1 /* WrongViewController.swift in Sources */,
+				4E31405729F4910E00B1AC84 /* GameView.swift in Sources */,
 				4E31404729F43EFB00B1AC84 /* CategoryVC.swift in Sources */,
 				4E31403D29F3F40900B1AC84 /* TeamVC.swift in Sources */,
 				4ED800E929ED944B00ABF0A1 /* CorrectViewController.swift in Sources */,
@@ -336,6 +347,7 @@
 				4E954AA429ED05D600ADECE0 /* AppDelegate.swift in Sources */,
 				4E954AA629ED05D600ADECE0 /* SceneDelegate.swift in Sources */,
 				045D2CAD29F146180019CB00 /* Info.swift in Sources */,
+				4E31405529F490E800B1AC84 /* GameViewController.swift in Sources */,
 				4E31403F29F3F6BA00B1AC84 /* TeamVC+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
