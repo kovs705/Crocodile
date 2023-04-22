@@ -9,22 +9,14 @@ import UIKit
 import SnapKit
 
 class TeamViewController: UIViewController {
-
+    
     // MARK: - Properties
     
     let backgroundImage = UIImage(named: "backgroundImage")
-    private var teamInfo: [Info] = []
+    var teamName = Info.getNameTeam()
+    var info: [Info] = []
     
     // MARK: - Private properties
-    
-    lazy var mainImageView: UIImageView = {
-       var imageView = UIImageView()
-        imageView = UIImageView(frame: self.view.bounds)
-        imageView.image = backgroundImage
-        imageView.contentMode = .scaleAspectFill
-        imageView.center = view.center
-        return imageView
-    }()
     
     private var collectionView: UICollectionView = {
         
@@ -37,7 +29,6 @@ class TeamViewController: UIViewController {
         
         let collectionV = UICollectionView(frame: .zero, collectionViewLayout: layot)
         collectionV.backgroundColor = .clear
-        collectionV.backgroundColor = #colorLiteral(red: 0.7847468257, green: 0.9781709313, blue: 0.6624839902, alpha: 1)
         
         return collectionV
     }()
@@ -67,28 +58,38 @@ class TeamViewController: UIViewController {
         super.viewDidLoad()
         title = "Кто играет?"
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.rightBarButtonItem = barButton()
 
+        setupNavigationBar()
         initialize()
+        setImageCollection()
         
     }
     
+    // MARK: - Navigation bar
+    
+    private func setupNavigationBar() {
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        navigationItem.rightBarButtonItem = addButton
+    }
+    
     // MARK: - Private methods
-    
-    
+
+    // не смогла вынести в отдельный файл
     private func randomImageName() -> String {
-        let imageNames = ["2", "3", "4", "5", "6", "7"]
+        let imageNames = ["2", "3", "4", "5", "6", "7", "8", "9"]
         return imageNames.randomElement() ?? ""
     }
     
-    
-    // MARK: - Add Button in tab bar
-
-    func barButton() -> UIBarButtonItem {
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
-       return addButton
+    // set image for collection view background
+    private func setImageCollection() {
+        let backgroundImageView = UIImageView(image: backgroundImage)
+        backgroundImageView.contentMode = .scaleAspectFill
+        collectionView.backgroundView = backgroundImageView
     }
-
+    
+    
+    
+    // MARK: - Add Button Action
     
     @objc func addButtonTapped() {
         let alertController = UIAlertController(title: "Add Team", message: "Enter team name", preferredStyle: .alert)
@@ -99,23 +100,61 @@ class TeamViewController: UIViewController {
         
         let addAction = UIAlertAction(title: "Add", style: .default) {
             [weak self] _ in
-            if let teamName = alertController.textFields?.first?.text {
-                let randomImageName = self?.randomImageName()
-                let newTeam = Info(name: teamName, image: randomImageName ?? "")
-                self?.teamInfo.append(newTeam)
-                self?.collectionView.reloadData()
-            }
-                                                                    
+            guard let self = self, let name = alertController.textFields?.first?.text else { return }
+            let image = self.randomImageName()
+            let newName = Info(name: name, image: image )
+            self.teamName.append(newName)
+            self.collectionView.reloadData()
         }
-        
+                                                                    
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(addAction)
         alertController.addAction(cancelAction)
         
-        present(alertController, animated: true)
+        present(alertController, animated: true, completion: nil)
     }
     
-    // MARK: - Button to the next scree "Category"
+    // MARK: - Add button in cell "Edit"
+    
+    @objc private func editButtonPressed(_ sender: UIButton) {
+        
+        guard let cell = sender.superview?.superview as? TeamCollectionViewCell,
+           let indexPath = collectionView.indexPath(for: cell) else  { return }
+            let alertController = UIAlertController(title: "Edit team name", message: nil, preferredStyle: .alert)
+            alertController.addTextField { textField in
+            textField.placeholder = "Enter new name"
+            let name = self.teamName[indexPath.item]
+            textField.text = name.name
+        }
+
+        
+            
+            let saveAction = UIAlertAction(title: "Save", style: .default) {[weak self] _ in
+                guard let self = self,
+                let newName = alertController.textFields?.first?.text else { return }
+                self.teamName[indexPath.item].name = newName
+                self.collectionView.reloadItems(at: [indexPath])
+                
+            }
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alertController.addAction(saveAction)
+            alertController.addAction(cancelAction)
+            
+            present(alertController, animated: true, completion: nil)
+        }
+        
+    
+    @objc private func deleteButtonPressed(_ sender: UIButton) {
+       guard let cell = sender.superview?.superview as? TeamCollectionViewCell,
+             let indexPath = collectionView.indexPath(for: cell) else { return }
+                if indexPath.item >= 2 {
+                    teamName.remove(at: indexPath.item)
+                    collectionView.deleteItems(at: [indexPath])
+                }
+            }
+    
+    // MARK: - Button to the next screen "Category"
     
     @objc func buttonPressed() {
         
@@ -126,11 +165,11 @@ class TeamViewController: UIViewController {
 
 }
 
+// Mark: - Extention initialize
+
 extension TeamViewController {
     
     func initialize() {
-        
-        view.addSubview(mainImageView)
             
             collectionView.dataSource = self
             collectionView.delegate = self
@@ -138,9 +177,9 @@ extension TeamViewController {
             
             view.addSubview(collectionView)
             collectionView.snp.makeConstraints { make in
-                make.top.equalTo(view.safeAreaLayoutGuide.snp.topMargin)
-                make.leading.trailing.equalToSuperview()//.inset(30)
-                make.bottom.equalToSuperview()//.inset(100)
+                make.top.equalToSuperview()
+                make.leading.trailing.equalToSuperview()
+                make.bottom.equalToSuperview()
                 
             }
         
@@ -155,21 +194,31 @@ extension TeamViewController {
     }
 }
 
+// MARK: - Data source
+
 extension TeamViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        teamInfo.count
+        teamName.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! TeamCollectionViewCell
-        cell.configure(with: teamInfo[indexPath.item])
-        cell.layer.cornerRadius = 15
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? TeamCollectionViewCell else { return UICollectionViewCell() }
         
+        let info = teamName[indexPath.item]
+        cell.configure(with: info)
+        cell.editButton.addTarget(self, action: #selector(editButtonPressed(_:)), for: .touchUpInside)
+        cell.deleteButton.addTarget(self, action: #selector(deleteButtonPressed(_:)), for: .touchUpInside)
+        cell.deleteButton.isHidden = indexPath.item < 2
+        cell.editButton.isHidden = indexPath.item > 2
+        
+        cell.layer.cornerRadius = 15
         return cell
     }
     
     
 }
+
+// MARK: - Delegate Flow Layout
 
 extension TeamViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -177,4 +226,19 @@ extension TeamViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// MARK: - Delegate
 
+extension TeamViewController: UICollectionViewDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.item >= 2 {
+            teamName.remove(at: indexPath.item)
+            collectionView.deleteItems(at: [indexPath])
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, canEditItemAt indexPath: IndexPath) -> Bool {
+        indexPath.item >= 2
+    }
+    
+}

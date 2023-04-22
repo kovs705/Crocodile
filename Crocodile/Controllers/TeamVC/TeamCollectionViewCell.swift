@@ -6,16 +6,20 @@
 //
 
 import UIKit
+import SnapKit
 
 class TeamCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "cell"
+    let imageButtonDelete = UIImage(systemName: "xmark.app")
+    let imageButtonEdit = UIImage(systemName: "pencil")
+    var onDeleteButton: (() -> Void)?
     
     var teamInfo: Info!
     
     // MARK: - Properties
     
-    private let nameLable: UILabel = {
+    let nameLable: UILabel = {
        let lable = UILabel()
         lable.font = UIFont.systemFont(ofSize: 20)
         lable.textAlignment = .center
@@ -23,11 +27,25 @@ class TeamCollectionViewCell: UICollectionViewCell {
         return lable
     }()
     
-    private let teamImageView: UIImageView = {
+    let teamImageView: UIImageView = {
        let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
+    }()
+    
+    lazy var deleteButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(imageButtonDelete, for: .normal)
+        button.tintColor = .red
+        return button
+    }()
+    
+    lazy var editButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(imageButtonEdit, for: .normal)
+        button.tintColor = .green
+        return button
     }()
     
     // MARK: - Initialization
@@ -41,13 +59,12 @@ class TeamCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Public method
+    // MARK: - Method
     
     func configure(with teamName: Info) {
         nameLable.text = teamName.name
         teamImageView.image = UIImage(named: teamName.image)
     }
-    
     
     // MARK: - Private method
     
@@ -68,7 +85,19 @@ class TeamCollectionViewCell: UICollectionViewCell {
             
         }
         
+        contentView.addSubview(editButton)
+        editButton.snp.makeConstraints { make in
+            make.top.right.equalToSuperview().inset(12)
+            make.width.height.equalTo(24)
+        }
+        
+        contentView.addSubview(deleteButton)
+        deleteButton.snp.makeConstraints { make in
+            make.top.right.equalToSuperview().inset(8)
+            make.width.height.equalTo(24)
+        }
+        
     }
     
-    
 }
+
