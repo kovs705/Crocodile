@@ -10,7 +10,33 @@ import UIKit
 class TeamVC: UIViewController {
     
     let backgroundImage = UIImage(named: "backgroundImage")
-    var teamName = Category.getNameTeam()
+    var teamObj: [Team] = []
+    
+    
+    func getTeams() {
+        TeamManager.shared.getTeams { [weak self ]result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let teams):
+                self.updateUI(with: teams)
+            case .failure(let failure):
+                fatalError(failure.rawValue)
+            }
+        }
+    }
+    
+    func updateUI(with teams: [Team]) {
+        if teams.isEmpty {
+            print("No teams")
+            // добавить две команды в UserDefaults по ключу "teams"
+        } else {
+            self.teamObj = teams
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+    }
     
     // MARK: - Private properties
     var collectionView: UICollectionView = {

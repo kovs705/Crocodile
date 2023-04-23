@@ -213,11 +213,9 @@
 				4E5DD48729F105DD00E15AEE /* MainVC */,
 				045D2CA929F145910019CB00 /* TeamVC */,
 				045D2CAE29F146E70019CB00 /* CategoryVC */,
-				4EC326C329F2CF1600001B4F /* CorrectVC.swift */,
-				4ED800E829ED944B00ABF0A1 /* CorrectViewController.swift */,
-				4ED800EA29ED945800ABF0A1 /* WrongViewController.swift */,
+				4E98A3F329F4ADB60050AB98 /* CorrectVC */,
 				4E31406429F4948A00B1AC84 /* GameResults */,
-				4ED800EE29ED948000ABF0A1 /* RulesViewController.swift */,
+				4E98A3F429F4ADC20050AB98 /* Rules */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -242,6 +240,24 @@
 				4E31405829F491FD00B1AC84 /* Team.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		4E98A3F329F4ADB60050AB98 /* CorrectVC */ = {
+			isa = PBXGroup;
+			children = (
+				4EC326C329F2CF1600001B4F /* CorrectVC.swift */,
+				4ED800E829ED944B00ABF0A1 /* CorrectViewController.swift */,
+				4ED800EA29ED945800ABF0A1 /* WrongViewController.swift */,
+			);
+			path = CorrectVC;
+			sourceTree = "<group>";
+		};
+		4E98A3F429F4ADC20050AB98 /* Rules */ = {
+			isa = PBXGroup;
+			children = (
+				4ED800EE29ED948000ABF0A1 /* RulesViewController.swift */,
+			);
+			path = Rules;
 			sourceTree = "<group>";
 		};
 		4ED800F029ED94EC00ABF0A1 /* Utilites */ = {
