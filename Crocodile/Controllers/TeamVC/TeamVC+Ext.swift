@@ -13,6 +13,9 @@ extension TeamVC {
             collectionView.dataSource = self
             collectionView.delegate = self
             collectionView.register(TeamCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        
+        collectionView.alwaysBounceVertical = true
+        collectionView.bounces = true
             
             view.addSubview(collectionView)
             collectionView.snp.makeConstraints { make in
