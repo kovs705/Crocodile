@@ -20,8 +20,8 @@ extension CategoryVC: UICollectionViewDataSource {
         
         cell.layer.cornerRadius = 15
         let info = infoCell[indexPath.item]
-        cell.isSelected = selectedCellIndex.contains(indexPath)
-        cell.configure(with: info, isSelected: true)
+        cell.configure(with: info)
+        cell.isChecked = selectedCellIndex.contains(indexPath.item)
         
         
         return cell
@@ -44,11 +44,12 @@ extension CategoryVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell {
             cell.isSelected = !cell.isSelected
-            if cell.isSelected {
-                selectedCellIndex.insert(indexPath)
+            if selectedCellIndex.contains(indexPath.item) {
+                selectedCellIndex.removeAll { $0 == indexPath.item}
             } else {
-                selectedCellIndex.remove(indexPath)
+                selectedCellIndex.append(indexPath.item)
             }
+            collectionView.reloadItems(at: [indexPath])
         }
     }
     

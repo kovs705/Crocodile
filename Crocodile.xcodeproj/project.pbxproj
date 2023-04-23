@@ -25,9 +25,6 @@
 		4E954AB029ED05D900ADECE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E954AAE29ED05D900ADECE0 /* LaunchScreen.storyboard */; };
 		4EC07EEA29EF33BF00027410 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4EC07EE929EF33BF00027410 /* SnapKit */; };
 		4EC07EEC29EF37B500027410 /* Extenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC07EEB29EF37B500027410 /* Extenstions.swift */; };
-		4EC326C229F2B74A00001B4F /* CorrectWrongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC326C129F2B74A00001B4F /* CorrectWrongView.swift */; };
-		4EC326C429F2CF1600001B4F /* CorrectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC326C329F2CF1600001B4F /* CorrectVC.swift */; };
-		4ED800E529ED942C00ABF0A1 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED800E429ED942C00ABF0A1 /* CategoryViewController.swift */; };
 		4ED800E929ED944B00ABF0A1 /* CorrectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED800E829ED944B00ABF0A1 /* CorrectViewController.swift */; };
 		4ED800EB29ED945800ABF0A1 /* WrongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED800EA29ED945800ABF0A1 /* WrongViewController.swift */; };
 		4ED800ED29ED946A00ABF0A1 /* GameResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED800EC29ED946A00ABF0A1 /* GameResultViewController.swift */; };
@@ -55,9 +52,6 @@
 		4E954AAF29ED05D900ADECE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4E954AB129ED05D900ADECE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EC07EEB29EF37B500027410 /* Extenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extenstions.swift; sourceTree = "<group>"; };
-		4EC326C129F2B74A00001B4F /* CorrectWrongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectWrongView.swift; sourceTree = "<group>"; };
-		4EC326C329F2CF1600001B4F /* CorrectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectVC.swift; sourceTree = "<group>"; };
-		4ED800E429ED942C00ABF0A1 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		4ED800E829ED944B00ABF0A1 /* CorrectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectViewController.swift; sourceTree = "<group>"; };
 		4ED800EA29ED945800ABF0A1 /* WrongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrongViewController.swift; sourceTree = "<group>"; };
 		4ED800EC29ED946A00ABF0A1 /* GameResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultViewController.swift; sourceTree = "<group>"; };
@@ -98,11 +92,18 @@
 		045D2CAE29F146E70019CB00 /* CategoryVC */ = {
 			isa = PBXGroup;
 			children = (
-				4ED800E429ED942C00ABF0A1 /* CategoryViewController.swift */,
 				4E31404629F43EFB00B1AC84 /* CategoryVC.swift */,
 				4E31404829F43F8500B1AC84 /* CategoryVC+Ext.swift */,
 			);
 			path = CategoryVC;
+			sourceTree = "<group>";
+		};
+		04EDB3F929F50A4A00C0CB22 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				4ED800F129ED94FA00ABF0A1 /* Constants.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		4E31403B29F3F3DA00B1AC84 /* Cells */ = {
@@ -146,6 +147,7 @@
 			children = (
 				4E954AA229ED05D600ADECE0 /* Crocodile */,
 				4E954AA129ED05D600ADECE0 /* Products */,
+				04EDB3F929F50A4A00C0CB22 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -177,8 +179,6 @@
 				4E5DD48729F105DD00E15AEE /* MainVC */,
 				045D2CA929F145910019CB00 /* TeamVC */,
 				045D2CAE29F146E70019CB00 /* CategoryVC */,
-				4ED800E629ED943D00ABF0A1 /* GameViewController.swift */,
-				4EC326C329F2CF1600001B4F /* CorrectVC.swift */,
 				4ED800E829ED944B00ABF0A1 /* CorrectViewController.swift */,
 				4ED800EA29ED945800ABF0A1 /* WrongViewController.swift */,
 				4ED800EC29ED946A00ABF0A1 /* GameResultViewController.swift */,
@@ -227,7 +227,6 @@
 		8483575A29F16266006A1DE7 /* GameView */ = {
 			isa = PBXGroup;
 			children = (
-				8483575B29F16279006A1DE7 /* GameView.swift */,
 			);
 			path = GameView;
 			sourceTree = "<group>";
@@ -235,9 +234,6 @@
 		8483576129F1633E006A1DE7 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				8483576329F16347006A1DE7 /* 321.wav */,
-				8483576429F16347006A1DE7 /* lost.wav */,
-				8483576229F16347006A1DE7 /* win.wav */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -245,7 +241,6 @@
 		8483576829F16C2D006A1DE7 /* GameVC */ = {
 			isa = PBXGroup;
 			children = (
-				8483575829F16259006A1DE7 /* GameViewController.swift */,
 			);
 			path = GameVC;
 			sourceTree = "<group>";
@@ -314,9 +309,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8483576729F16347006A1DE7 /* lost.wav in Resources */,
-				8483576629F16347006A1DE7 /* 321.wav in Resources */,
-				8483576529F16347006A1DE7 /* win.wav in Resources */,
 				4E954AB029ED05D900ADECE0 /* LaunchScreen.storyboard in Resources */,
 				4E954AAD29ED05D900ADECE0 /* Assets.xcassets in Resources */,
 			);
@@ -329,10 +321,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8483575929F16259006A1DE7 /* GameViewController.swift in Sources */,
 				4E5DD48629F105D800E15AEE /* MainVC+ext.swift in Sources */,
 				4ED800ED29ED946A00ABF0A1 /* GameResultViewController.swift in Sources */,
-				4ED800E529ED942C00ABF0A1 /* CategoryViewController.swift in Sources */,
 				045D2CB029F147090019CB00 /* CategoryCollectionViewCell.swift in Sources */,
 				045D2CA829F145850019CB00 /* TeamViewController.swift in Sources */,
 				045D2CAB29F145B80019CB00 /* TeamCollectionViewCell.swift in Sources */,
@@ -347,7 +337,6 @@
 				4ED800E929ED944B00ABF0A1 /* CorrectViewController.swift in Sources */,
 				4E31404929F43F8500B1AC84 /* CategoryVC+Ext.swift in Sources */,
 				0039CF1F29EFE25700AABED7 /* Resources.swift in Sources */,
-				8483575E29F1628C006A1DE7 /* MusicModel.swift in Sources */,
 				4E954AA429ED05D600ADECE0 /* AppDelegate.swift in Sources */,
 				4E954AA629ED05D600ADECE0 /* SceneDelegate.swift in Sources */,
 				045D2CAD29F146180019CB00 /* Info.swift in Sources */,

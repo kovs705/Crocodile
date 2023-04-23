@@ -128,7 +128,7 @@ class TeamVC: UIViewController {
     
     @objc func buttonPressed() {
         
-        let categoryVC = CategoryViewController()
+        let categoryVC = CategoryVC()//CategoryViewController()
         navigationController?.pushViewController(categoryVC, animated: true)
         
     }
