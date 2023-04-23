@@ -15,7 +15,11 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     
     private var cellInfo = Category.getCategory()
     
-    //var teamInfo: Info!
+    var isChecked: Bool = false {
+          didSet {
+              checkmarkImageView.isHidden = !isChecked
+          }
+      }
     
     // MARK: - Properties
     
@@ -47,7 +51,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(systemName: "checkmark.circle.fill")
-        imageView.tintColor = .systemGray
+        imageView.tintColor = .green
         imageView.isHidden = true
         return imageView
     }()
@@ -65,17 +69,10 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Public method
     
-    func configure(with category: Category, isSelected: Bool) {
+    func configure(with category: Category) {
         nameLabel.text = category.name
-        teamView.backgroundColor = UIColor(named: backColor.randomElement()!)
+        teamView.backgroundColor = UIColor(named: category.back)
         categoryEmoji.text = category.emoji
-        checkmarkImageView.isHidden = !isSelected
-    }
-    
-    override var isSelected: Bool {
-        didSet {
-            checkmarkImageView.image = isSelected ? UIImage(named: "checkmark_selected") : UIImage(named: "checkmark_unselected")
-        }
     }
     
     
