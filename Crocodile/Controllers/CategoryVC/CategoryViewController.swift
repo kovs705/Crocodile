@@ -14,7 +14,7 @@ class CategoryViewController: UIViewController {
     
     let backgroundImage = UIImage(named: "backgroundImage")
     private var infoCell = Info.getCategory()
-    var selectedCellIndex: Set<IndexPath> = []
+    var selectedCellIndex: [Int] = []
     
     // MARK: - Private properties
     
@@ -123,10 +123,8 @@ extension CategoryViewController: UICollectionViewDataSource {
         
         cell.layer.cornerRadius = 15
         let info = infoCell[indexPath.item]
-        cell.isSelected = selectedCellIndex.contains(indexPath)
-        cell.configure(with: info, isSelected: true)
-        
-        
+        cell.configure(with: info)
+        cell.isChecked = selectedCellIndex.contains(indexPath.item)
         return cell
     }
     
@@ -145,15 +143,13 @@ extension CategoryViewController: UICollectionViewDelegateFlowLayout {
 extension CategoryViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell {
-            cell.isSelected = !cell.isSelected
-            if cell.isSelected {
-                selectedCellIndex.insert(indexPath)
-            } else {
-                selectedCellIndex.remove(indexPath)
-            }
+        if selectedCellIndex.contains(indexPath.item) {
+            selectedCellIndex.removeAll { $0 == indexPath.item}
+        } else {
+            selectedCellIndex.append(indexPath.item)
         }
+        collectionView.reloadItems(at: [indexPath])
     }
-    
 }
+    
 
