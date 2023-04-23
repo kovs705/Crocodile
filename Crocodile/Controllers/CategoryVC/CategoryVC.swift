@@ -45,6 +45,11 @@ class CategoryVC: UIViewController {
     
     @objc func buttonPressed() {
         
+        if selectedCellIndex.count == 0 {
+            showAlertNoWords()
+            return
+        }
+        
         for number in selectedCellIndex {
             for category in categories {
                 if category.index == number {
@@ -64,6 +69,16 @@ class CategoryVC: UIViewController {
         let backgroundImageView = UIImageView(image: backgroundImage)
         backgroundImageView.contentMode = .scaleAspectFit
         collectionView.backgroundView = backgroundImageView
+    }
+    
+    func showAlertNoWords() {
+        let alertController = UIAlertController(title: "Внимание", message: "Для интересной игры выберите пожалуйста хотя бы одну категорию!", preferredStyle: .alert)
+        
+        let alertCancel = UIAlertAction(title: "Хорошо!", style: .cancel) { _ in }
+        
+        alertController.addAction(alertCancel)
+        
+        present(alertController, animated: true, completion: nil)
     }
     
     

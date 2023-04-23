@@ -23,6 +23,8 @@ class GameViewController: UIViewController {
     override func loadView() {
         super.loadView()
         self.view = gameView
+        navigationItem.hidesBackButton = true
+        navigationItem.leftBarButtonItem?.isEnabled = false
     }
     
     override func viewDidLoad() {
