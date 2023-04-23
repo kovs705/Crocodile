@@ -17,6 +17,7 @@ class TeamViewController: TeamVC {
         
         setupNavigationBar()
         initialize()
+        getTeams()
         setImageCollection()
         
         // MARK: - Проверить это.
@@ -24,7 +25,6 @@ class TeamViewController: TeamVC {
         // суммировать по итогу выбранные категории в один большой array, из которого затем будут использоваться рандомно объекты
         // array из заданий а-ля "объясни это жестами" и т.д
         // три раза пройтись по командам, что в итоге даст каждой команде сыграть в сумме по 3 раза
-        getTeams()
         
     }
     

@@ -37,13 +37,13 @@ extension TeamVC {
 // MARK: - ViewDataSource
 extension TeamVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        teamName.count
+        teamObj.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? TeamCollectionViewCell else { return UICollectionViewCell() }
         
-        let info = teamName[indexPath.item]
+        let info = teamObj[indexPath.item]
         cell.configure(with: info)
         cell.editButton.addTarget(self, action: #selector(editButtonPressed(_:)), for: .touchUpInside)
         cell.deleteButton.addTarget(self, action: #selector(deleteButtonPressed(_:)), for: .touchUpInside)

@@ -61,9 +61,11 @@ class TeamCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Method
     
-    func configure(with teamName: Category) {
-        nameLable.text = teamName.name
-        teamImageView.image = UIImage(named: teamName.image)
+    func configure(with team: Team) {
+        print(team.name)
+        print(team.backColor)
+        print(team.emoji)
+        print(team.score)
     }
     
     // MARK: - Private method
