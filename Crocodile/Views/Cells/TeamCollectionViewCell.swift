@@ -19,7 +19,7 @@ class TeamCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     
-    let nameLable: UILabel = {
+    let nameLabel: UILabel = {
        let lable = UILabel()
         lable.font = UIFont.systemFont(ofSize: 20)
         lable.textAlignment = .center
@@ -27,11 +27,20 @@ class TeamCollectionViewCell: UICollectionViewCell {
         return lable
     }()
     
-    let teamImageView: UIImageView = {
-       let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        return imageView
+    let teamView: UIView = {
+       let teamView = UIView()
+        teamView.backgroundColor = .white
+        teamView.frame = CGRectMake(0, 0, 50, 50)
+        teamView.layer.cornerRadius = 40
+        return teamView
+    }()
+    
+    let teamEmoji: UILabel = {
+        let label = UILabel()
+        label.text = "🐊"
+        label.font = UIFont.systemFont(ofSize: 40)
+        label.textAlignment = .center
+        return label
     }()
     
     lazy var deleteButton: UIButton = {
@@ -52,7 +61,7 @@ class TeamCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupView()
+        setupView(team: Team(emoji: emojies.randomElement()!, backColor: backColor.randomElement()!, name: names.randomElement()!, score: 0))
     }
     
     required init?(coder: NSCoder) {
@@ -70,18 +79,26 @@ class TeamCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Private method
     
-    private func setupView() {
+    private func setupView(team: Team) {
         backgroundColor = .white
         
-        contentView.addSubview(teamImageView)
-        teamImageView.snp.makeConstraints { make in
+        contentView.addSubview(teamView)
+        teamView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(10)
-            make.top.bottom.equalToSuperview()
-            make.width.equalToSuperview().multipliedBy(0.25)
+            make.top.equalToSuperview().offset(10)
+            make.bottom.equalToSuperview().offset(-10)
+            make.width.equalToSuperview().multipliedBy(0.22)
         }
         
-        contentView.addSubview(nameLable)
-        nameLable.snp.makeConstraints { make in
+        
+        teamView.addSubview(teamEmoji)
+        teamEmoji.snp.makeConstraints { make in
+            make.centerX.equalTo(teamView)
+            make.centerY.equalTo(teamView)
+        }
+        
+        contentView.addSubview(nameLabel)
+        nameLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
             
@@ -98,6 +115,11 @@ class TeamCollectionViewCell: UICollectionViewCell {
             make.top.right.equalToSuperview().inset(8)
             make.width.height.equalTo(24)
         }
+        
+        
+        teamView.backgroundColor = UIColor(named: team.backColor)
+        teamEmoji.text = team.emoji
+        nameLabel.text = team.name
         
     }
     

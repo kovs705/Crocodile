@@ -30,7 +30,6 @@ enum Resources {
         static let tLime = "tLime"
         static let tPink = "tPink"
         static let tPurple = "tPurple"
-        static let tWhite = "tWhite"
     }
     
     enum UIConstants {
