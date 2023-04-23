@@ -18,7 +18,7 @@ struct Team: Codable, Hashable {
     let emoji: String
     let backColor: String
     
-    let name: String
+    var name: String
     var score: Int
 }
 

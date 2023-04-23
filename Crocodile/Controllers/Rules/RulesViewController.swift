@@ -27,6 +27,9 @@ class RulesViewController : UIViewController {
         scrollView.isPagingEnabled = false
         scrollView.bounces = true
         scrollView.contentSize = self.view.frame.size
+        scrollView.isScrollEnabled = true
+        scrollView.alwaysBounceVertical = true
+        scrollView.bounces = true
         
         self.view.addSubview(scrollView)
         scrollView.snp.makeConstraints { make in

@@ -12,7 +12,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "cell1"
     
-    private var cellInfo = Info.getCategory()
+    private var cellInfo = Category.getCategory()
     
     var isChecked: Bool = false {
         didSet {

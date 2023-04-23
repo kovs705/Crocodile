@@ -57,6 +57,11 @@ extension GameViewController: SelectorAnswerDelegate {
     
     func rightButtonDidTapped(_ header: GameView) {
         print("Ответ верный")
+        
+        
+//        let vcEND = GameResultsViewController()
+//        navigationController?.pushViewController(vcEND, animated: true)
+        
         musicPlayer.playSound(nameOfMusic: "win")
         
         TeamManager.shared.updateWith(team: team, action: .plus) { result in

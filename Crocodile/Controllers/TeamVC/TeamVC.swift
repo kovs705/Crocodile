@@ -10,7 +10,33 @@ import UIKit
 class TeamVC: UIViewController {
     
     let backgroundImage = UIImage(named: "backgroundImage")
-    var teamName = Info.getNameTeam()
+    var teamObj: [Team] = []
+    
+    
+    func getTeams() {
+        TeamManager.shared.getTeams { [weak self ] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let teams):
+                self.updateUI(with: teams)
+            case .failure(let failure):
+                fatalError(failure.rawValue)
+            }
+        }
+    }
+    
+    func updateUI(with teams: [Team]) {
+        if teams.isEmpty {
+            print("No teams")
+            // добавить две команды в UserDefaults по ключу "teams"
+        } else {
+            self.teamObj = teams
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+    }
     
     // MARK: - Private properties
     var collectionView: UICollectionView = {
@@ -71,9 +97,20 @@ class TeamVC: UIViewController {
         let addAction = UIAlertAction(title: "Add", style: .default) {
             [weak self] _ in
             guard let self = self, let name = alertController.textFields?.first?.text else { return }
-            let image = self.randomImageName()
-            let newName = Info(name: name, image: image )
-            self.teamName.append(newName)
+            
+            let team = Team(emoji: emojies.randomElement()!, backColor: backColor.randomElement()!, name: name, score: 0)
+            TeamManager.shared.updateWith(team: team, action: .add) { error in
+                
+                guard error != nil else {
+                    // success:
+                    print("Team - \(team) created successfully!")
+                    self.updateUI(with: self.teamObj)
+                    return
+                }
+                // failure:
+                fatalError("failure on adding new team")
+            }
+            
             self.collectionView.reloadData()
         }
         
@@ -93,8 +130,25 @@ class TeamVC: UIViewController {
         let alertController = UIAlertController(title: "Edit team name", message: nil, preferredStyle: .alert)
         alertController.addTextField { textField in
             textField.placeholder = "Enter new name"
-            let name = self.teamName[indexPath.item]
-            textField.text = name.name
+            
+            let team = self.teamObj[indexPath.item]
+            
+            TeamManager.shared.getTeams { result in
+                switch result {
+                case .success(var teamsArray):
+                    guard teamsArray.contains(where: { $0.name == team.name && $0.emoji == team.emoji }) else {
+                        return
+                    }
+                    
+                    teamsArray = teamsArray.map { t in
+                        if t.name == team.name && t.emoji == team.emoji {
+                            return Team(emoji: t.emoji, backColor: t.backColor, name: textField.text!, score: t.score+1)
+                        } else { return t }
+                    }
+                case .failure(_):
+                    fatalError()
+                }
+            }
         }
         
         
@@ -102,7 +156,7 @@ class TeamVC: UIViewController {
         let saveAction = UIAlertAction(title: "Save", style: .default) {[weak self] _ in
             guard let self = self,
                   let newName = alertController.textFields?.first?.text else { return }
-            self.teamName[indexPath.item].name = newName
+            self.teamObj[indexPath.item].name = newName
             self.collectionView.reloadItems(at: [indexPath])
             
         }
@@ -119,8 +173,19 @@ class TeamVC: UIViewController {
         guard let cell = sender.superview?.superview as? TeamCollectionViewCell,
               let indexPath = collectionView.indexPath(for: cell) else { return }
         if indexPath.item >= 2 {
-            teamName.remove(at: indexPath.item)
-            collectionView.deleteItems(at: [indexPath])
+            TeamManager.shared.updateWith(team: teamObj[indexPath.item], action: .remove) { [weak self] error in
+                guard let self = self else { return }
+                guard let error = error else {
+                    // success:
+                    self.teamObj.remove(at: indexPath.item)
+                    self.collectionView.deleteItems(at: [indexPath])
+                    return
+                }
+                // failure
+                fatalError(error.rawValue)
+            }
+            
+            
         }
     }
     

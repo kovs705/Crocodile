@@ -13,6 +13,9 @@ extension TeamVC {
             collectionView.dataSource = self
             collectionView.delegate = self
             collectionView.register(TeamCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        
+        collectionView.alwaysBounceVertical = true
+        collectionView.bounces = true
             
             view.addSubview(collectionView)
             collectionView.snp.makeConstraints { make in
@@ -37,13 +40,13 @@ extension TeamVC {
 // MARK: - ViewDataSource
 extension TeamVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        teamName.count
+        teamObj.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? TeamCollectionViewCell else { return UICollectionViewCell() }
         
-        let info = teamName[indexPath.item]
+        let info = teamObj[indexPath.item]
         cell.configure(with: info)
         cell.editButton.addTarget(self, action: #selector(editButtonPressed(_:)), for: .touchUpInside)
         cell.deleteButton.addTarget(self, action: #selector(deleteButtonPressed(_:)), for: .touchUpInside)
@@ -71,7 +74,7 @@ extension TeamVC: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.item >= 2 {
-            teamName.remove(at: indexPath.item)
+            teamObj.remove(at: indexPath.item)
             collectionView.deleteItems(at: [indexPath])
         }
     }

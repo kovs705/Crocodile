@@ -15,7 +15,7 @@ class TeamCollectionViewCell: UICollectionViewCell {
     let imageButtonEdit = UIImage(systemName: "pencil")
     var onDeleteButton: (() -> Void)?
     
-    var teamInfo: Info!
+    var teamInfo: Category!
     
     // MARK: - Properties
     
@@ -61,9 +61,11 @@ class TeamCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Method
     
-    func configure(with teamName: Info) {
-        nameLable.text = teamName.name
-        teamImageView.image = UIImage(named: teamName.image)
+    func configure(with team: Team) {
+        print(team.name)
+        print(team.backColor)
+        print(team.emoji)
+        print(team.score)
     }
     
     // MARK: - Private method

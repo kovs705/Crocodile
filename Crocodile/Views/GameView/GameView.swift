@@ -46,7 +46,7 @@ final class GameView: UIView {
         label.text = "Картошка"
         label.font = .systemFont(ofSize: 55, weight: .regular)
         label.textAlignment = .center
-        label.numberOfLines = 1
+        label.numberOfLines = 0
         label.textColor = .black
         return label
     }()
