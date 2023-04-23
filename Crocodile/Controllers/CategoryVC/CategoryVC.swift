@@ -9,9 +9,10 @@ import UIKit
 
 class CategoryVC: UIViewController {
     
+    var categoriesWords: [String] = []
     
     let backgroundImage = UIImage(named: "backgroundImage")
-    var infoCell = Category.getCategory()
+    var categories = Category.getCategory()
     var selectedCellIndex: [Int] = []
     
     var collectionView: UICollectionView = {
@@ -43,6 +44,17 @@ class CategoryVC: UIViewController {
     
     
     @objc func buttonPressed() {
+        
+        for number in selectedCellIndex {
+            for category in categories {
+                if category.index == number {
+                    categoriesWords += category.words
+                }
+            }
+        }
+        
+        print(categoriesWords)
+        
         let vc = GameViewController()
         navigationController?.pushViewController(vc, animated: true)
     }

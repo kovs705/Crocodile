@@ -12,14 +12,14 @@ import UIKit
 
 extension CategoryVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        infoCell.count
+        categories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath) as? CategoryCollectionViewCell else { return UICollectionViewCell() }
         
         cell.layer.cornerRadius = 15
-        let info = infoCell[indexPath.item]
+        let info = categories[indexPath.item]
         cell.configure(with: info)
         cell.isChecked = selectedCellIndex.contains(indexPath.item)
         
