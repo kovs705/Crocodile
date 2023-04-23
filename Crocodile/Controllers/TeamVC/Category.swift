@@ -38,8 +38,8 @@ extension Category {
     
     static func getNameTeam() -> [Category] {
         [
-            Category(name: "Хогвардс", image: "5", words: <#[String]#>),
-            Category(name: "Звездные войны", image: "8", words: <#[String]#>)
+            Category(name: "Хогвардс", image: "5", words: animals),
+            Category(name: "Звездные войны", image: "8", words: food)
         ]
     }
     

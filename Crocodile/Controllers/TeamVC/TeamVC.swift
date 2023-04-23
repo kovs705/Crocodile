@@ -104,6 +104,7 @@ class TeamVC: UIViewController {
                 guard error != nil else {
                     // success:
                     print("Team - \(team) created successfully!")
+                    self.updateUI(with: self.teamObj)
                     return
                 }
                 // failure:
@@ -178,6 +179,7 @@ class TeamVC: UIViewController {
                     // success:
                     self.teamObj.remove(at: indexPath.item)
                     self.collectionView.deleteItems(at: [indexPath])
+                    return
                 }
                 // failure
                 fatalError(error.rawValue)

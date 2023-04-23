@@ -71,7 +71,7 @@ extension TeamVC: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.item >= 2 {
-            teamName.remove(at: indexPath.item)
+            teamObj.remove(at: indexPath.item)
             collectionView.deleteItems(at: [indexPath])
         }
     }

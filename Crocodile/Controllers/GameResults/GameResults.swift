@@ -50,7 +50,7 @@ class GameResults: UIViewController {
         
         for team in teams {
             stackView.addArrangedSubview(ResultCell(teamName: team.name, teamImage: team.image))
-            print(team.name)
+            print(team)
         }
     }
     
