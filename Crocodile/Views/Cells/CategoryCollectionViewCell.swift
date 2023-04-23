@@ -60,7 +60,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Public method
     
-    func configure(with teamName: Info, isSelected: Bool) {
+    func configure(with teamName: Info) {
         nameLable.text = teamName.name
         categoryImage.image = UIImage(named: teamName.image)
         

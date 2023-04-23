@@ -5,10 +5,10 @@
 //  Created by Kovs on 17.04.2023.
 //
 
-//import SnapKit
+
 import UIKit
 
-class RoolsViewController : UIViewController {
+class RulesViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,21 +19,6 @@ class RoolsViewController : UIViewController {
         view.addSubview(backgroundImage)
         backgroundImage.snp.makeConstraints { make in
             make.top.left.right.bottom.equalToSuperview()
-        }
-        
-        // Creating Button which return us to main menu
-        let backbutton = UIButton()
-        backbutton.setTitle("\u{2190}", for: .normal)
-        backbutton.setTitleColor(.black, for: .normal)
-     
-        backbutton.addTarget(self, action: #selector(BackButtonTapped), for: .touchUpInside)
-        
-        view.addSubview(backbutton)
-        backbutton.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(20)
-            make.left.equalToSuperview()
-            make.height.equalTo(100)
-            make.width.equalTo(100)
         }
         
         
@@ -63,12 +48,6 @@ class RoolsViewController : UIViewController {
         
     }
 
-    // go back to MainVC
-    @objc func BackButtonTapped(_ sender: UIButton) {
-        let vc = MainViewController()
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true, completion: nil)
-        }
     
    // Rules
     let howToPlayText = """

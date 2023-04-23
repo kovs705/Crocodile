@@ -86,6 +86,13 @@ class MainVC: UIViewController {
             make.width.equalTo(211)
             make.height.equalTo(65)
         }
+        
+        rulesButton.addTarget(self, action: #selector(openRules), for: .touchUpInside)
+    }
+    
+    @objc func openRules() {
+        let rulesPage = RulesViewController()
+        navigationController?.pushViewController(rulesPage, animated: true)
     }
     
     func setupResultsButton() {

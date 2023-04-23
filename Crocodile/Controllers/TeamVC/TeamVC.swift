@@ -15,14 +15,16 @@ class TeamVC: UIViewController {
     // MARK: - Private properties
     var collectionView: UICollectionView = {
         
-        let layot = UICollectionViewFlowLayout()
-        layot.scrollDirection = .vertical
-        layot.minimumInteritemSpacing = 16
-        layot.minimumLineSpacing = 16
-        layot.sectionInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
-        layot.itemSize = CGSize(width: 351, height: 96)
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.collectionView?.alwaysBounceVertical = true
+        layout.collectionView?.isScrollEnabled = true
+        layout.minimumInteritemSpacing = 16
+        layout.minimumLineSpacing = 16
+        layout.sectionInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        layout.itemSize = CGSize(width: 351, height: 96)
         
-        let collectionV = UICollectionView(frame: .zero, collectionViewLayout: layot)
+        let collectionV = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionV.backgroundColor = .clear
         
         return collectionV
@@ -126,7 +128,7 @@ class TeamVC: UIViewController {
     
     @objc func buttonPressed() {
         
-        let categoryVC = CategoryViewController()
+        let categoryVC = CategoryVC()//CategoryViewController()
         navigationController?.pushViewController(categoryVC, animated: true)
         
     }
