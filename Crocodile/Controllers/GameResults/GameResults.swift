@@ -13,6 +13,7 @@ class GameResults: UIViewController {
     let backgroundImage = UIImageView(image: UIImage(named: Resources.Image.backgroundImage))
     var teams = Category.getNameTeam()
     
+    
     var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.isPagingEnabled = false
@@ -30,6 +31,7 @@ class GameResults: UIViewController {
         stackView.axis = .vertical
         stackView.spacing = 15
         stackView.backgroundColor = .clear
+        stackView.distribution = .fillEqually
         
         return stackView
     }()
@@ -46,11 +48,12 @@ class GameResults: UIViewController {
         scrollView.addSubview(stackView)
         stackView.snp.makeConstraints { make in
             make.left.right.top.equalTo(scrollView)
+            make.width.equalTo(scrollView)
+            make.height.equalTo(225)
         }
         
         for team in teams {
-            stackView.addArrangedSubview(ResultCell(teamName: team.name, teamImage: team.backColor, teamScore: team.score, teamEmoji: team.emoji))
-            print(team)
+            stackView.addArrangedSubview(ResultCell(team: team))
         }
     }
     

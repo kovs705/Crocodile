@@ -100,6 +100,13 @@ class MainVC: UIViewController {
             make.width.equalTo(211)
             make.height.equalTo(65)
         }
+        
+        resultsButton.addTarget(self, action: #selector(openResults), for: .touchUpInside)
+    }
+    
+    @objc func openResults() {
+        let resultsVC = GameResultsViewController()
+        navigationController?.pushViewController(resultsVC, animated: true)
     }
     
 

@@ -17,8 +17,9 @@ class GameViewController: UIViewController {
     private var remindTimer = Timer()
     private var isTimerRunning = false
     
-    
-    var team = Team(emoji: "😈", backColor: "", name: "", score: 0)
+    var teams: [Team]!
+    var team: Team!
+    var words: [String]!
     
     override func loadView() {
         super.loadView()
@@ -35,7 +36,7 @@ class GameViewController: UIViewController {
     
     private func runTimer() {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-        remindTimer = Timer.scheduledTimer(timeInterval: 49, target: self, selector: #selector(reminderTenSecond), userInfo: nil, repeats: false)
+        remindTimer = Timer.scheduledTimer(timeInterval: 50, target: self, selector: #selector(reminderTenSecond), userInfo: nil, repeats: false)
     }
     
     @objc private func reminderTenSecond() {
@@ -99,7 +100,8 @@ extension GameViewController: SelectorAnswerDelegate {
         let alertController = UIAlertController(title: "Сбросить игру?", message: "Вы хотите сбросить прогресс вашей игры и вернуться в главное меню?", preferredStyle: .alert)
         
         let alertOk = UIAlertAction(title: "Ok", style: .default) {_ in
-            TeamManager.shared.updateWith(team: self.team, action: .remove) { result in
+            TeamManager.shared.updateWith(team: self.teams, action: .remove) { [weak self] result in
+                guard let self = self else { return }
                 TeamManager.shared.getTeams { team in
                     switch team {
                     case.failure(let error):
@@ -108,6 +110,7 @@ extension GameViewController: SelectorAnswerDelegate {
                     case .success(let teamModel):
                         print(teamModel)
                         print("Данные о командах сброшены")
+                        self.timer.invalidate()
                     }
                 }
             }

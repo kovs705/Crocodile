@@ -6,99 +6,120 @@
 //
 
 import UIKit
-
+import SnapKit
 
 class ResultCell: UIView {
     
-    let teamInformationImage = UIImageView(image: UIImage(named: Resources.Image.teamInformationImage))
-    var pictureTeamImage = UIImageView(image: UIImage(named: Resources.Image.cowboyImage))
-    let teamNameLabel = UILabel()
-    
-    var currentScoresLabel = UILabel()
-    let currentScoresNameLabel = UILabel() // Очки
-    let oneScoreLabel = UILabel()
+    var team: Team!
     
     var teamName: String!
     var teamImage: String!
     var teamScore: Int!
     var teamEmoji: String!
     
+    // MARK: - Properties
+    
+    let nameLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.textAlignment = .center
+        label.textColor = .black
+        return label
+    }()
+    
+    let teamView: UIView = {
+       let teamView = UIView()
+        teamView.backgroundColor = .white
+        teamView.frame = CGRectMake(0, 0, 50, 50)
+        teamView.layer.cornerRadius = 40
+        return teamView
+    }()
+    
+    let teamEmojiLabel: UILabel = {
+        let label = UILabel()
+        label.text = "🐊"
+        label.font = UIFont.systemFont(ofSize: 40)
+        label.textAlignment = .center
+        return label
+    }()
+    
+    let teamScoreLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 35)
+        label.textAlignment = .center
+        label.textColor = .black
+        return label
+    }()
+    
+    // MARK: - Initialization
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
     }
     
-    init(teamName: String, teamImage: String, teamScore: Int, teamEmoji: String) {
+    init(team: Team) {
         super.init(frame: .zero)
-        self.teamName = teamName
-        self.teamImage = teamImage
-        self.teamScore = teamScore
+        self.teamName = team.name
+        self.teamView.backgroundColor = UIColor(named: team.backColor)
+        self.teamScore = team.score
+        self.teamEmoji = team.emoji
         
-        initializeSELF()
+        
+        // configure(with: team)
+        setupView(team: team)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func initializeSELF() {
-        self.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 40, height: 150)
-        self.backgroundColor = .white
+    
+    func configure(with team: Team) {
+        print(team.name)
+        print(team.backColor)
+        print(team.emoji)
+        print(team.score)
+    }
+    
+    // MARK: - Private method
+    
+    private func setupView(team: Team) {
+        backgroundColor = .white
         
-        setupTeamNameLabel()
-        setupPictureTeamImage()
-        setupCurrentScoresLabel()
-        setupCurrentScoresNameLabel()
-    }
-    
-    // имя команды
-    func setupTeamNameLabel() {
-        self.addSubview(teamNameLabel)
-        teamNameLabel.text = "Ковбои"
-        teamNameLabel.textColor = .black
-        teamNameLabel.font = UIFont.systemFont(ofSize: 20)
-        teamNameLabel.contentMode = .center
-        teamNameLabel.snp.makeConstraints { make in
-            make.leading.equalTo(self.snp.leading).offset(34)
-            make.centerY.equalTo(self)
+        self.addSubview(teamView)
+        teamView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(10)
+            make.top.equalToSuperview().offset(10)
+            make.bottom.equalToSuperview().offset(-10)
+            make.width.equalToSuperview().multipliedBy(0.22)
         }
-    }
-    
-    // картинка комманды
-    func setupPictureTeamImage() {
-        self.addSubview(pictureTeamImage)
-        pictureTeamImage.snp.makeConstraints { make in
-            make.width.equalTo(56)
-            make.height.equalTo(56)
-            make.leading.equalTo(self.snp.leading).offset(27)
-            make.centerY.equalTo(self)
+        
+        
+        teamView.addSubview(teamEmojiLabel)
+        teamEmojiLabel.snp.makeConstraints { make in
+            make.centerX.equalTo(teamView)
+            make.centerY.equalTo(teamView)
         }
-    }
-    
-    func setupCurrentScoresLabel() {
-        self.addSubview(currentScoresLabel)
-        currentScoresLabel.text = "1"
-        currentScoresLabel.textColor = .black
-        currentScoresLabel.font = UIFont.systemFont(ofSize: 55)
-        currentScoresLabel.contentMode = .center
-        currentScoresLabel.snp.makeConstraints { make in
-            make.trailing.equalTo(self.snp.trailing).offset(-35)
-            make.centerY.equalTo(self).offset(-10)
-        }
-    }
-    
-    func setupCurrentScoresNameLabel() {
-        self.addSubview(currentScoresNameLabel)
-        currentScoresNameLabel.textColor = .black
-        currentScoresNameLabel.text = "Очки"
-        currentScoresNameLabel.font = UIFont.systemFont(ofSize: 15)
-        currentScoresNameLabel.contentMode = .center
-        currentScoresNameLabel.snp.makeConstraints { make in
+        
+        self.addSubview(nameLabel)
+        nameLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
             
-            make.trailing.equalTo(self.snp.trailing).offset(-30)
-            make.bottom.equalTo(self.snp.bottom).offset(-38)
         }
+        
+        self.addSubview(teamScoreLabel)
+        teamScoreLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalTo(self.snp.trailing).offset(-30)
+        }
+        
+        teamView.backgroundColor = UIColor(named: team.backColor)
+        teamEmojiLabel.text = team.emoji
+        nameLabel.text = team.name
+        teamScoreLabel.text = String(team.score)
+        
     }
+    
 }
-
 
