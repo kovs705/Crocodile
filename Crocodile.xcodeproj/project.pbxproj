@@ -11,7 +11,7 @@
 		0039CF2529EFEDCD00AABED7 /* GreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0039CF2429EFEDCD00AABED7 /* GreenButton.swift */; };
 		045D2CA829F145850019CB00 /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045D2CA729F145850019CB00 /* TeamViewController.swift */; };
 		045D2CAB29F145B80019CB00 /* TeamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045D2CAA29F145B80019CB00 /* TeamCollectionViewCell.swift */; };
-		045D2CAD29F146180019CB00 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045D2CAC29F146180019CB00 /* Info.swift */; };
+		045D2CAD29F146180019CB00 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045D2CAC29F146180019CB00 /* Category.swift */; };
 		045D2CB029F147090019CB00 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045D2CAF29F147090019CB00 /* CategoryCollectionViewCell.swift */; };
 		4E31403D29F3F40900B1AC84 /* TeamVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E31403C29F3F40900B1AC84 /* TeamVC.swift */; };
 		4E31403F29F3F6BA00B1AC84 /* TeamVC+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E31403E29F3F6BA00B1AC84 /* TeamVC+Ext.swift */; };
@@ -47,7 +47,7 @@
 		0039CF2429EFEDCD00AABED7 /* GreenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenButton.swift; sourceTree = "<group>"; };
 		045D2CA729F145850019CB00 /* TeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
 		045D2CAA29F145B80019CB00 /* TeamCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCollectionViewCell.swift; sourceTree = "<group>"; };
-		045D2CAC29F146180019CB00 /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Info.swift; path = Crocodile/Controllers/TeamVC/Info.swift; sourceTree = SOURCE_ROOT; };
+		045D2CAC29F146180019CB00 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Category.swift; path = Crocodile/Controllers/TeamVC/Category.swift; sourceTree = SOURCE_ROOT; };
 		045D2CAF29F147090019CB00 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		4E31403C29F3F40900B1AC84 /* TeamVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamVC.swift; sourceTree = "<group>"; };
 		4E31403E29F3F6BA00B1AC84 /* TeamVC+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TeamVC+Ext.swift"; sourceTree = "<group>"; };
@@ -237,7 +237,7 @@
 		4E954ABA29ED067200ADECE0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				045D2CAC29F146180019CB00 /* Info.swift */,
+				045D2CAC29F146180019CB00 /* Category.swift */,
 				4E31405229F490B800B1AC84 /* MusicModel.swift */,
 				4E31405829F491FD00B1AC84 /* Team.swift */,
 			);
@@ -382,7 +382,7 @@
 				4E954AA429ED05D600ADECE0 /* AppDelegate.swift in Sources */,
 				4E954AA629ED05D600ADECE0 /* SceneDelegate.swift in Sources */,
 				4E31406629F497C000B1AC84 /* ResultCell.swift in Sources */,
-				045D2CAD29F146180019CB00 /* Info.swift in Sources */,
+				045D2CAD29F146180019CB00 /* Category.swift in Sources */,
 				4E31405529F490E800B1AC84 /* GameViewController.swift in Sources */,
 				4E31403F29F3F6BA00B1AC84 /* TeamVC+Ext.swift in Sources */,
 			);

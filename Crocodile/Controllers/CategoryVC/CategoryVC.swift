@@ -11,7 +11,7 @@ class CategoryVC: UIViewController {
     
     
     let backgroundImage = UIImage(named: "backgroundImage")
-    var infoCell = Info.getCategory()
+    var infoCell = Category.getCategory()
     var selectedCellIndex: Set<IndexPath> = []
     
     var collectionView: UICollectionView = {

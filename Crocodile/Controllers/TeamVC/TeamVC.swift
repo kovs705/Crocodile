@@ -10,7 +10,7 @@ import UIKit
 class TeamVC: UIViewController {
     
     let backgroundImage = UIImage(named: "backgroundImage")
-    var teamName = Info.getNameTeam()
+    var teamName = Category.getNameTeam()
     
     // MARK: - Private properties
     var collectionView: UICollectionView = {
@@ -72,7 +72,7 @@ class TeamVC: UIViewController {
             [weak self] _ in
             guard let self = self, let name = alertController.textFields?.first?.text else { return }
             let image = self.randomImageName()
-            let newName = Info(name: name, image: image )
+            let newName = Category(name: name, image: image )
             self.teamName.append(newName)
             self.collectionView.reloadData()
         }

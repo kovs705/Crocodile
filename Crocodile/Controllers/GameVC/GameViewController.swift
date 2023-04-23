@@ -59,8 +59,8 @@ extension GameViewController: SelectorAnswerDelegate {
         print("Ответ верный")
         
         
-        let vcEND = GameResultsViewController()
-        navigationController?.pushViewController(vcEND, animated: true)
+//        let vcEND = GameResultsViewController()
+//        navigationController?.pushViewController(vcEND, animated: true)
         
         musicPlayer.playSound(nameOfMusic: "win")
         

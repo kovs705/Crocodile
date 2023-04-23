@@ -13,7 +13,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "cell1"
     
-    private var cellInfo = Info.getCategory()
+    private var cellInfo = Category.getCategory()
     
     //var teamInfo: Info!
     
@@ -58,7 +58,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Public method
     
-    func configure(with teamName: Info, isSelected: Bool) {
+    func configure(with teamName: Category, isSelected: Bool) {
         nameLable.text = "\(teamName.name) + 1" // + 1 убрать как в предыдущем варианте
         categoryImage.image = UIImage(named: teamName.image)
         checkmarkImageView.isHidden = !isSelected
