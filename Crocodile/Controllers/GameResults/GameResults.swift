@@ -49,7 +49,7 @@ class GameResults: UIViewController {
         }
         
         for team in teams {
-            stackView.addArrangedSubview(ResultCell(teamName: team.name, teamImage: team.image))
+            stackView.addArrangedSubview(ResultCell(teamName: team.name, teamImage: team.backColor, teamScore: team.score, teamEmoji: team.emoji))
             print(team)
         }
     }

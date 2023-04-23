@@ -19,7 +19,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     
-    private let nameLable: UILabel = {
+    private let nameLabel: UILabel = {
        let lable = UILabel()
         lable.font = UIFont.systemFont(ofSize: 20)
         lable.textAlignment = .center
@@ -27,13 +27,20 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         return lable
     }()
     
-    private let categoryImage: UIImageView = {
-       let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        //imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = imageView.frame.size.width / 2
-        imageView.layer.masksToBounds = true
-        return imageView
+    let teamView: UIView = {
+       let teamView = UIView()
+        teamView.backgroundColor = .white
+        teamView.frame = CGRectMake(0, 0, 50, 50)
+        teamView.layer.cornerRadius = 40
+        return teamView
+    }()
+    
+    let categoryEmoji: UILabel = {
+        let categoryEmoji = UILabel()
+        categoryEmoji.text = "🐊"
+        categoryEmoji.font = UIFont.systemFont(ofSize: 40)
+        categoryEmoji.textAlignment = .center
+        return categoryEmoji
     }()
     
     private var checkmarkImageView: UIImageView = {
@@ -58,11 +65,11 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Public method
     
-    func configure(with teamName: Category, isSelected: Bool) {
-        nameLable.text = "\(teamName.name)"
-        categoryImage.image = UIImage(named: teamName.image)
+    func configure(with category: Category, isSelected: Bool) {
+        nameLabel.text = category.name
+        teamView.backgroundColor = UIColor(named: backColor.randomElement()!)
+        categoryEmoji.text = category.emoji
         checkmarkImageView.isHidden = !isSelected
-        
     }
     
     override var isSelected: Bool {
@@ -77,15 +84,22 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     private func setupView() {
         backgroundColor = .white
         
-        contentView.addSubview(categoryImage)
-        categoryImage.snp.makeConstraints { make in
+        contentView.addSubview(teamView)
+        teamView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(10)
-            make.top.bottom.equalToSuperview()
-            make.width.equalToSuperview().multipliedBy(0.25)
+            make.top.equalToSuperview().offset(10)
+            make.bottom.equalToSuperview().offset(-10)
+            make.width.equalToSuperview().multipliedBy(0.22)
         }
         
-        contentView.addSubview(nameLable)
-        nameLable.snp.makeConstraints { make in
+        teamView.addSubview(categoryEmoji)
+        categoryEmoji.snp.makeConstraints { make in
+            make.centerX.equalTo(teamView)
+            make.centerY.equalTo(teamView)
+        }
+        
+        contentView.addSubview(nameLabel)
+        nameLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
             

@@ -10,7 +10,7 @@ import UIKit
 
 // MARK: - emojies, names, colors
 let emojies: Set = ["😈", "💀", "👨‍💻", "😼", "😎", "🐊", "🦖", "👾", "👻", "🥷"]
-let backColor: Set = ["tGray", "tBlue", "tLime", "tPink", "tPurple", "tWhite"]
+let backColor: Set = ["tGray", "tBlue", "tLime", "tPink", "tPurple"]
 let names: Set = ["Занозы", "Крутыши", "Котаны", "Геймеры", "Ниндзя", "Злодеи", "Кодеры", "Ящерки", "Призраки"]
 
 

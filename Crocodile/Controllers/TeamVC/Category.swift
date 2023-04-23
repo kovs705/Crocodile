@@ -12,6 +12,7 @@ struct Category {
     let image: String
     
     let words: [String]
+    let emoji: String
 }
 
 let food = ["картошка", "морковка", "банан", "редиска", "синнабон", "леденец", "мороженое", "торт", "креветки", "стейк"]
@@ -26,20 +27,20 @@ extension Category {
     static func getCategory() -> [Category] {
         
         [
-            Category(name: "Food", image: "food1", words: food),
-            Category(name: "Animals", image: "animals", words: animals),
-            Category(name: "People", image: "person", words: people),
-            Category(name: "Hobby", image: "hobby", words: hobby),
-            Category(name: "Characters", image: "characters", words: characters),
-            Category(name: "Books", image: "books", words: books)
+            Category(name: "Food", image: "food1", words: food, emoji: "🍔"),
+            Category(name: "Animals", image: "animals", words: animals, emoji: "🐒"),
+            Category(name: "People", image: "person", words: people, emoji: "🙋‍♂️"),
+            Category(name: "Hobby", image: "hobby", words: hobby, emoji: "🎸"),
+            Category(name: "Characters", image: "characters", words: characters, emoji: "🕴"),
+            Category(name: "Books", image: "books", words: books, emoji: "📚")
         ]
         
     }
     
-    static func getNameTeam() -> [Category] {
+    static func getNameTeam() -> [Team] {
         [
-            Category(name: "Хогвардс", image: "5", words: animals),
-            Category(name: "Звездные войны", image: "8", words: food)
+            Team(emoji: "🦖", backColor: "tBlue", name: "Динозаврики", score: 0),
+            Team(emoji: "👾", backColor: "tPurple", name: "Геймеры", score: 0)
         ]
     }
     

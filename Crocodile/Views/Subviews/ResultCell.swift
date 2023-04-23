@@ -20,16 +20,19 @@ class ResultCell: UIView {
     
     var teamName: String!
     var teamImage: String!
+    var teamScore: Int!
+    var teamEmoji: String!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
     }
     
-    init(teamName: String, teamImage: String) {
+    init(teamName: String, teamImage: String, teamScore: Int, teamEmoji: String) {
         super.init(frame: .zero)
         self.teamName = teamName
         self.teamImage = teamImage
+        self.teamScore = teamScore
         
         initializeSELF()
     }
