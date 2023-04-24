@@ -62,17 +62,27 @@ class GameViewController: UIViewController {
     
     @objc private func updateTimer() {
         if seconds == 0 {
-            timer.invalidate()
+            
+            timersInvalidate()
+            
             if numberOfMoves >= 10 {
                 let correctVC = CorrectViewController(win: false, isLast: true, team: team)
+                show(correctVC, sender: self)
             } else {
                 let correctVC = CorrectViewController(win: false, isLast: false, team: team)
+                show(correctVC, sender: self)
             }
+            
         } else {
             seconds -= 1
             gameView.timerLabel.text = gameView.timeString(time: TimeInterval(seconds))
         }
         
+    }
+    
+    func timersInvalidate() {
+        timer.invalidate()
+        remindTimer.invalidate()
     }
     
 }
@@ -82,11 +92,12 @@ extension GameViewController: SelectorAnswerDelegate {
     func rightButtonDidTapped(_ header: GameView) {
         print("Ответ верный")
         
-        
-//        let vcEND = GameResultsViewController()
-//        navigationController?.pushViewController(vcEND, animated: true)
+        let correctVC = CorrectViewController(win: false, isLast: true, team: team)
+        show(correctVC, sender: self)
         
         musicPlayer.playSound(nameOfMusic: "win")
+        
+        timersInvalidate()
         
         TeamManager.shared.updateWith(team: team, action: .plus) { result in
             TeamManager.getTeams { team in
@@ -108,7 +119,10 @@ extension GameViewController: SelectorAnswerDelegate {
     
     func wrongButtonDidTapped(_ header: GameView) {
         print("Ответ не верный")
+        
         musicPlayer.playSound(nameOfMusic: "lost")
+        
+        timersInvalidate()
         
         DispatchQueue.main.asyncAfter(deadline: .now()+2) {
             print("переход на следующий экарн")
@@ -120,7 +134,8 @@ extension GameViewController: SelectorAnswerDelegate {
     func resetButtonDidTapped(_ header: GameView) {
         let alertController = UIAlertController(title: "Сбросить игру?", message: "Вы хотите сбросить прогресс вашей игры и вернуться в главное меню?", preferredStyle: .alert)
         
-        let alertOk = UIAlertAction(title: "Ok", style: .default) {_ in
+        let alertOk = UIAlertAction(title: "Ok", style: .default) { [weak self] _ in
+            guard let self = self else { return }
             TeamManager.shared.getTeams { team in
                 switch team {
                 case.failure(let error):
@@ -129,7 +144,8 @@ extension GameViewController: SelectorAnswerDelegate {
                 case .success(let teamModel):
                     print(teamModel)
                     print("Данные о командах сброшены")
-                    self.timer.invalidate()
+                    
+                    self.timersInvalidate()
                 }
             }
         }

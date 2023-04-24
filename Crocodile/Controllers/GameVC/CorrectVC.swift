@@ -9,11 +9,11 @@ import UIKit
 
 class CorrectViewController: UIViewController {
     
-    let win: Bool!
-    let isLast: Bool!
-    let team: Team!
+    var win: Bool!
+    var isLast: Bool!
+    var team: Team!
     
-    let correctView = CorrectWrongView(greetOrLose: win, teamName: "Test")
+    var correctView = CorrectWrongView(greetOrLose: true, teamName: "Test")
     
     let backgroundImage = UIImageView(image: UIImage(named: Resources.Image.backgroundImage))
     
@@ -24,14 +24,22 @@ class CorrectViewController: UIViewController {
     var currentScoresLabel = UILabel()
     let currentScoresNameLabel = UILabel() // Очки
     let oneScoreLabel = UILabel()
-    let passTheMoveButton = GreenButton(title: "Передать ход")
+    let passTheMoveButton = GreenButton(backgroundColor: Resources.Colors.greenButtonColor, title: "Передать ход")
     
     let screenBounds = UIScreen.main.bounds
     
     init(win: Bool, isLast: Bool, team: Team) {
+        super.init(nibName: nil, bundle: nil)
+        
         self.win = win
         self.isLast = isLast
         self.team = team
+        
+        correctView = CorrectWrongView(greetOrLose: win, teamName: team.name)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {

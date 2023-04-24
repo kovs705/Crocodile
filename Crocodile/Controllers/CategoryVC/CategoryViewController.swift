@@ -18,7 +18,7 @@ class CategoryViewController: CategoryVC {
 
         initialize()
         setImageCollection()
-        
+        getTeams()
     }
     
 }

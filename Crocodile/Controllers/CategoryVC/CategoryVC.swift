@@ -63,7 +63,7 @@ class CategoryVC: UIViewController {
         
         print(categoriesWords)
         
-        let gameVC = GameViewController(teams: self.teams, team: self.teams.first, words: categoriesWords)
+        let gameVC = GameViewController(teams: teams, team: self.teams.first, words: categoriesWords)
         navigationController?.pushViewController(gameVC, animated: true)
     }
     

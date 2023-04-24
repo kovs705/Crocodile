@@ -33,7 +33,7 @@ class TeamVC: UIViewController {
     func updateUI(with teams: [Team]) {
         if teams.isEmpty {
             print("No teams")
-            // добавить две команды в UserDefaults по ключу "teams"
+            self.teamObj = Category.getBaseTeams()
         } else {
             self.teamObj = teams
             DispatchQueue.main.async {
@@ -109,7 +109,11 @@ class TeamVC: UIViewController {
                 fatalError("failure on adding new team")
             }
             
-            self.collectionView.reloadData()
+            DispatchQueue.main.async {
+                print("ooo")
+                self.collectionView.reloadData()
+                self.collectionView.layoutIfNeeded()
+            }
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -129,6 +133,13 @@ class TeamVC: UIViewController {
         alertController.addTextField { textField in
             textField.placeholder = "Enter new name"
             
+        }
+    
+        
+        let saveAction = UIAlertAction(title: "Save", style: .default) {[weak self] _ in
+            guard let self = self,
+                  let newName = alertController.textFields?.first?.text else { return }
+            
             let team = self.teamObj[indexPath.item]
             
             TeamManager.shared.getTeams { result in
@@ -140,22 +151,18 @@ class TeamVC: UIViewController {
                     
                     teamsArray = teamsArray.map { t in
                         if t.name == team.name && t.emoji == team.emoji {
-                            return Team(emoji: t.emoji, backColor: t.backColor, name: textField.text!, score: t.score+1)
+                            return Team(emoji: t.emoji, backColor: t.backColor, name: newName, score: t.score+1)
                         } else { return t }
                     }
-                case .failure(_):
-                    fatalError()
+                case .failure(let error):
+                    fatalError(error.rawValue)
                 }
             }
-        }
-        
-        
-        
-        let saveAction = UIAlertAction(title: "Save", style: .default) {[weak self] _ in
-            guard let self = self,
-                  let newName = alertController.textFields?.first?.text else { return }
+            
             self.teamObj[indexPath.item].name = newName
             self.collectionView.reloadItems(at: [indexPath])
+            self.collectionView.reloadData()
+            // why
             
         }
         

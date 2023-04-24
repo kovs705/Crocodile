@@ -112,6 +112,7 @@ enum TeamManager {
             let encoder = JSONEncoder()
             let encodedTeams = try encoder.encode(teams)
             defautls.set(encodedTeams, forKey: Keys.teamsKey)
+            print("saved")
             return nil
         } catch {
             return .smthWrong
