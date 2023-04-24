@@ -15,6 +15,8 @@ class CategoryVC: UIViewController {
     var categories = Category.getCategory()
     var selectedCellIndex: [Int] = []
     
+    var teams: [Team] = []
+    
     var collectionView: UICollectionView = {
         
        let layout = UICollectionViewFlowLayout()
@@ -58,10 +60,24 @@ class CategoryVC: UIViewController {
             }
         }
         
+        
         print(categoriesWords)
         
-        let vc = GameViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        let gameVC = GameViewController(teams: self.teams, team: self.teams.first, words: categoriesWords)
+        navigationController?.pushViewController(gameVC, animated: true)
+    }
+    
+    func getTeams() {
+        TeamManager.shared.getTeams { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let teams):
+                self.teams = teams
+            case .failure(let error):
+                fatalError(error.rawValue)
+            }
+        }
     }
     
     

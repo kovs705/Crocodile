@@ -11,7 +11,7 @@ import SnapKit
 class GameResults: UIViewController {
     
     let backgroundImage = UIImageView(image: UIImage(named: Resources.Image.backgroundImage))
-    var teams = Category.getNameTeam()
+    var teams = Category.getBaseTeams()
     
     
     var scrollView: UIScrollView = {

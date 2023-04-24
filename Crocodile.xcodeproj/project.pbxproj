@@ -28,6 +28,7 @@
 		4E31406329F4948400B1AC84 /* GameResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E31406229F4948400B1AC84 /* GameResults.swift */; };
 		4E31406629F497C000B1AC84 /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E31406529F497C000B1AC84 /* ResultCell.swift */; };
 		4E5DD48629F105D800E15AEE /* MainVC+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5DD48529F105D800E15AEE /* MainVC+ext.swift */; };
+		4E789C9729F66198007C5E32 /* CorrectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC326C329F2CF1600001B4F /* CorrectVC.swift */; };
 		4E954AA429ED05D600ADECE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E954AA329ED05D600ADECE0 /* AppDelegate.swift */; };
 		4E954AA629ED05D600ADECE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E954AA529ED05D600ADECE0 /* SceneDelegate.swift */; };
 		4E954AA829ED05D600ADECE0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E954AA729ED05D600ADECE0 /* MainViewController.swift */; };
@@ -209,7 +210,6 @@
 				4E5DD48729F105DD00E15AEE /* MainVC */,
 				045D2CA929F145910019CB00 /* TeamVC */,
 				045D2CAE29F146E70019CB00 /* CategoryVC */,
-				4E98A3F329F4ADB60050AB98 /* CorrectVC */,
 				4E31406429F4948A00B1AC84 /* GameResults */,
 				4E98A3F429F4ADC20050AB98 /* Rules */,
 			);
@@ -236,14 +236,6 @@
 				4E31405829F491FD00B1AC84 /* Team.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		4E98A3F329F4ADB60050AB98 /* CorrectVC */ = {
-			isa = PBXGroup;
-			children = (
-				4EC326C329F2CF1600001B4F /* CorrectVC.swift */,
-			);
-			path = CorrectVC;
 			sourceTree = "<group>";
 		};
 		4E98A3F429F4ADC20050AB98 /* Rules */ = {
@@ -285,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				4E31405429F490E800B1AC84 /* GameViewController.swift */,
+				4EC326C329F2CF1600001B4F /* CorrectVC.swift */,
 			);
 			path = GameVC;
 			sourceTree = "<group>";
@@ -391,6 +384,7 @@
 				4E954AA629ED05D600ADECE0 /* SceneDelegate.swift in Sources */,
 				4E31406629F497C000B1AC84 /* ResultCell.swift in Sources */,
 				045D2CAD29F146180019CB00 /* Category.swift in Sources */,
+				4E789C9729F66198007C5E32 /* CorrectVC.swift in Sources */,
 				4E31405529F490E800B1AC84 /* GameViewController.swift in Sources */,
 				4E31403F29F3F6BA00B1AC84 /* TeamVC+Ext.swift in Sources */,
 			);

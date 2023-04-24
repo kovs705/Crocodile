@@ -7,9 +7,13 @@
 
 import UIKit
 
-class CorrectVC: UIViewController {
+class CorrectViewController: UIViewController {
     
-    let correctView = CorrectWrongView(greetOrLose: true, teamName: "КОМАНДА")
+    let win: Bool!
+    let isLast: Bool!
+    let team: Team!
+    
+    let correctView = CorrectWrongView(greetOrLose: win, teamName: "Test")
     
     let backgroundImage = UIImageView(image: UIImage(named: Resources.Image.backgroundImage))
     
@@ -23,6 +27,12 @@ class CorrectVC: UIViewController {
     let passTheMoveButton = GreenButton(title: "Передать ход")
     
     let screenBounds = UIScreen.main.bounds
+    
+    init(win: Bool, isLast: Bool, team: Team) {
+        self.win = win
+        self.isLast = isLast
+        self.team = team
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

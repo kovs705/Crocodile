@@ -46,8 +46,8 @@ extension TeamVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? TeamCollectionViewCell else { return UICollectionViewCell() }
         
-        let info = teamObj[indexPath.item]
-        cell.configure(with: info)
+        let team = teamObj[indexPath.item]
+        cell.setupView(team: team)
         cell.editButton.addTarget(self, action: #selector(editButtonPressed(_:)), for: .touchUpInside)
         cell.deleteButton.addTarget(self, action: #selector(deleteButtonPressed(_:)), for: .touchUpInside)
         cell.deleteButton.isHidden = indexPath.item < 2

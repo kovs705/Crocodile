@@ -61,7 +61,6 @@ class TeamCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupView(team: Team(emoji: emojies.randomElement()!, backColor: backColor.randomElement()!, name: names.randomElement()!, score: 0))
     }
     
     required init?(coder: NSCoder) {
@@ -79,7 +78,7 @@ class TeamCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Private method
     
-    private func setupView(team: Team) {
+    func setupView(team: Team) {
         backgroundColor = .white
         
         contentView.addSubview(teamView)

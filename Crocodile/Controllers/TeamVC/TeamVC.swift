@@ -19,7 +19,11 @@ class TeamVC: UIViewController {
             
             switch result {
             case .success(let teams):
+                
+                self.teamObj = teams
+                print(self.teamObj)
                 self.updateUI(with: teams)
+                
             case .failure(let failure):
                 fatalError(failure.rawValue)
             }
@@ -71,12 +75,6 @@ class TeamVC: UIViewController {
     func setupNavigationBar() {
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         navigationItem.rightBarButtonItem = addButton
-    }
-    
-    // MARK: - Logic
-    func randomImageName() -> String {
-        let imageNames = ["2", "3", "4", "5", "6", "7", "8", "9"]
-        return imageNames.randomElement() ?? ""
     }
     
     func setImageCollection() {

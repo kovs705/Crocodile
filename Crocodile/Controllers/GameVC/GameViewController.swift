@@ -21,6 +21,14 @@ class GameViewController: UIViewController {
     var team: Team!
     var words: [String]!
     
+    var teamIndex = 0
+    var numberOfMoves = 0 // until 10
+    
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func loadView() {
         super.loadView()
         self.view = gameView
@@ -28,10 +36,19 @@ class GameViewController: UIViewController {
         navigationItem.leftBarButtonItem?.isEnabled = false
     }
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         gameView.delegate = self
         runTimer()
+    }
+    
+    init(teams: [Team]!, team: Team!, words: [String]!) {
+        super.init(nibName: nil, bundle: nil)
+        self.teams = teams
+        self.team = team
+        self.words = words
     }
     
     private func runTimer() {
@@ -44,9 +61,13 @@ class GameViewController: UIViewController {
     }
     
     @objc private func updateTimer() {
-        if seconds < 1 {
+        if seconds == 0 {
             timer.invalidate()
-            // что тут должно быть?
+            if numberOfMoves >= 10 {
+                let correctVC = CorrectViewController(win: false, isLast: true, team: team)
+            } else {
+                let correctVC = CorrectViewController(win: false, isLast: false, team: team)
+            }
         } else {
             seconds -= 1
             gameView.timerLabel.text = gameView.timeString(time: TimeInterval(seconds))
@@ -100,18 +121,15 @@ extension GameViewController: SelectorAnswerDelegate {
         let alertController = UIAlertController(title: "Сбросить игру?", message: "Вы хотите сбросить прогресс вашей игры и вернуться в главное меню?", preferredStyle: .alert)
         
         let alertOk = UIAlertAction(title: "Ok", style: .default) {_ in
-            TeamManager.shared.updateWith(team: self.teams, action: .remove) { [weak self] result in
-                guard let self = self else { return }
-                TeamManager.shared.getTeams { team in
-                    switch team {
-                    case.failure(let error):
-                        print(error.localizedDescription)
-                        
-                    case .success(let teamModel):
-                        print(teamModel)
-                        print("Данные о командах сброшены")
-                        self.timer.invalidate()
-                    }
+            TeamManager.shared.getTeams { team in
+                switch team {
+                case.failure(let error):
+                    print(error.localizedDescription)
+                    
+                case .success(let teamModel):
+                    print(teamModel)
+                    print("Данные о командах сброшены")
+                    self.timer.invalidate()
                 }
             }
         }
