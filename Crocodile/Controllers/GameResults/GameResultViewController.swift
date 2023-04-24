@@ -13,10 +13,9 @@ class GameResultsViewController: GameResults {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        getTeams()
         setupBackgroundImage()
         placeSV()
         placeStackView()
-        
     }
 }

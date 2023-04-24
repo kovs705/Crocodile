@@ -149,11 +149,32 @@ class TeamVC: UIViewController {
                         return
                     }
                     
+                    
+                    let teamToCopy = Team(emoji: team.emoji, backColor: team.backColor, name: newName, score: team.score)
                     teamsArray = teamsArray.map { t in
                         if t.name == team.name && t.emoji == team.emoji {
-                            return Team(emoji: t.emoji, backColor: t.backColor, name: newName, score: t.score+1)
-                        } else { return t }
+                            TeamManager.shared.updateWith(team: team, action: .remove) { error in
+                                guard let error = error else {
+                                    self.updateUI(with: self.teamObj)
+                                    return
+                                }
+                                fatalError(error.rawValue)
+                            }
+                            
+                            return Team(emoji: t.emoji, backColor: t.backColor, name: newName, score: t.score)
+                            
+                        } else {
+                            TeamManager.shared.updateWith(team: teamToCopy, action: .add) { error in
+                                guard let error = error else {
+                                    self.updateUI(with: self.teamObj)
+                                    return
+                                }
+                                fatalError(error.rawValue)
+                            }
+                            return t
+                        }
                     }
+                    
                 case .failure(let error):
                     fatalError(error.rawValue)
                 }

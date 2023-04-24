@@ -16,6 +16,7 @@ class CorrectWrongView: UIView {
     let scoreLabel = UILabel()
     
     let nextMoveLabel = UILabel()
+    let score = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,15 +30,15 @@ class CorrectWrongView: UIView {
     }
     
     
-    convenience init(greetOrLose: Bool, teamName: String) {
+    convenience init(greetOrLose: Bool, teamName: String, isLast: Bool, team: Team) {
         self.init(frame: .zero)
         
-        configureWinOrLose(isWin: greetOrLose, nextTeam: teamName)
+        configureWinOrLose(isWin: greetOrLose, nextTeam: teamName, team: team)
     }
     
     
     // MARK: - Win or Lose:
-    private func configureWinOrLose(isWin: Bool, nextTeam: String) {
+    private func configureWinOrLose(isWin: Bool, nextTeam: String, team: Team) {
         
         self.backgroundColor = UIColor(named: isWin ? Resources.Colors.greenButtonColor : Resources.Colors.redColor)
         
@@ -47,6 +48,18 @@ class CorrectWrongView: UIView {
         winOrLostImage.image = UIImage(named: isWin ? Resources.Image.correctStarImage : Resources.Image.wrongCircleImage)
         
         nextMoveLabel.text = "Следующий ход - \(nextTeam)"
+        setupTeamNameLabel(team: team)
+    }
+    
+    func setupTeamNameLabel(team: Team) {
+        winOrLostImage.addSubview(scoreLabel)
+        scoreLabel.text = String(team.score)
+        scoreLabel.textColor = .black
+        scoreLabel.font = UIFont.systemFont(ofSize: 20)
+        scoreLabel.contentMode = .center
+        scoreLabel.snp.makeConstraints { make in
+            make.centerX.centerY.equalTo(winOrLostImage)
+        }
     }
     
     
@@ -119,13 +132,13 @@ class CorrectWrongView: UIView {
     
     
     private func placeScoreInsideImage() {
-        self.addSubview(scoreLabel)
+        winOrLostImage.addSubview(scoreLabel)
         
         configureLabel(of: scoreLabel, withSize: 13, textColor: .yellow, isBold: false)
         scoreLabel.text = "ОЧКИ"
         
         scoreLabel.snp.makeConstraints { make in
-            make.centerX.equalTo(self)
+            make.centerX.equalTo(winOrLostImage)
             make.top.equalTo(winOrLostImage.snp.bottom).offset(-6)
         }
         

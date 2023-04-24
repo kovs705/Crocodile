@@ -1,31 +1,61 @@
 //
-//  GameView.swift
+//  GameVC.swift
 //  Crocodile
 //
-//  Created by Админ on 17.04.2023.
+//  Created by Kovs on 24.04.2023.
 //
 
 import UIKit
 import SnapKit
 
 protocol SelectorAnswerDelegate: AnyObject {
-    func resetButtonDidTapped(_ header: GameView)
-    func rightButtonDidTapped(_ header: GameView)
-    func wrongButtonDidTapped(_ header: GameView)
+    func resetButtonDidTapped(_ header: GameVC)
+    func rightButtonDidTapped(_ header: GameVC)
+    func wrongButtonDidTapped(_ header: GameVC)
 }
 
-final class GameView: UIView {
+public var teamIndex = 0
+public var numberOfMoves = 0
+
+class GameVC: UIViewController {
     
     weak var delegate: SelectorAnswerDelegate?
     
-    private let bacgroundView: UIImageView = {
+    let musicPlayer = MusicModel()
+    var seconds = 60
+    var timer = Timer()
+    var remindTimer = Timer()
+    var isTimerRunning = false
+    
+    var variations = Category.getActions()
+    
+    var teams: [Team]!
+    var team: Team!
+    var words: [String]!
+    
+     // until 10
+    var numberOfTries = 3
+    
+    var numberOverall = 0
+    var teamsCount = 0
+    
+    
+    
+    
+    
+    func timersInvalidate() {
+        timer.invalidate()
+        remindTimer.invalidate()
+    }
+    
+    let bacgroundView: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "backgroundImage")
         view.contentMode = .scaleToFill
         return view
     }()
     
-    private let crocImage: UIImageView = {
+    let crocImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "croc")
         return image
@@ -51,7 +81,7 @@ final class GameView: UIView {
         return label
     }()
     
-    lazy var descriptionLabel: UILabel = {
+    lazy var variationLabel: UILabel = {
         let label = UILabel()
         label.text = "объясни с помощью жестов"
         label.font = .systemFont(ofSize: 25, weight: .light)
@@ -61,76 +91,54 @@ final class GameView: UIView {
         return label
     }()
     
-    private lazy var greenGameButton : UIButton = {
+    lazy var greenGameButton : UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Правильно", for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.523082912, green: 0.7005900741, blue: 0.2440984249, alpha: 1)
         return button
     }()
     
-    private lazy var redGameButton : UIButton = {
+    lazy var redGameButton : UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Нарушил правила", for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.9019607843, green: 0.2745098039, blue: 0.2745098039, alpha: 1)
         return button
     }()
     
-    private lazy var grayGameButton : UIButton = {
+    lazy var grayGameButton : UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Сбросить", for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.5490196078, green: 0.568627451, blue: 0.5882352941, alpha: 1)
         return button
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         setupViews()
         setTargetToButton()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        bacgroundView.frame = bounds
-        
-    }
-    
     //MARK: - configure button delegate
     
-    private func setTargetToButton() {
+    func setTargetToButton() {
         greenGameButton.addTarget(self, action: #selector(rightButtonDidTapped), for: .touchUpInside)
         redGameButton.addTarget(self, action: #selector(wrongButtonDidTapped), for: .touchUpInside)
         grayGameButton.addTarget(self, action: #selector(resetButtonDidTapped), for: .touchUpInside)
         
     }
-    
-    @objc private func rightButtonDidTapped() {
-        delegate?.rightButtonDidTapped(self)
-        greenGameButton.blink()
-    }
-    
-    @objc private func wrongButtonDidTapped() {
-        delegate?.wrongButtonDidTapped(self)
-        redGameButton.blink()
-    }
-    
-    @objc private func resetButtonDidTapped() {
-        delegate?.resetButtonDidTapped(self)
-        grayGameButton.blink()
-    }
 }
 
-//MARK: - UI setting extension
-
-extension GameView {
-    private func setupViews() {
-        [bacgroundView,crocImage,timerLabel, mainWordLabel, descriptionLabel, greenGameButton, redGameButton, grayGameButton].forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-            addSubview($0)
-        }
+extension GameVC {
+    func setupViews() {
+        bacgroundView.translatesAutoresizingMaskIntoConstraints = false
+        crocImage.translatesAutoresizingMaskIntoConstraints = false
+        timerLabel.translatesAutoresizingMaskIntoConstraints = false
+        mainWordLabel.translatesAutoresizingMaskIntoConstraints = false
+        variationLabel.translatesAutoresizingMaskIntoConstraints = false
+        greenGameButton.translatesAutoresizingMaskIntoConstraints = false
+        redGameButton.translatesAutoresizingMaskIntoConstraints = false
+        grayGameButton.translatesAutoresizingMaskIntoConstraints = false
         
         [ greenGameButton, redGameButton, grayGameButton].forEach {
             $0.layer.shadowOpacity = 1
@@ -143,42 +151,54 @@ extension GameView {
             $0.titleLabel?.font = .systemFont(ofSize: 20, weight: .regular)
         }
         
+        view.addSubview(bacgroundView)
+        bacgroundView.snp.makeConstraints { make in
+            make.bottom.left.right.top.equalToSuperview()
+        }
+        
+        view.addSubview(crocImage)
         crocImage.snp.makeConstraints { make in
             make.centerX.equalToSuperview().inset(120)
             make.bottom.equalToSuperview().inset(642)
             make.top.equalToSuperview().inset(60)
         }
         
+        view.addSubview(timerLabel)
         timerLabel.snp.makeConstraints { make in
             make.top.equalTo(crocImage).inset(90)
             make.centerX.equalToSuperview().inset(25)
             make.bottom.equalToSuperview().inset(450)
         }
         
+        view.addSubview(mainWordLabel)
         mainWordLabel.snp.makeConstraints { make in
             make.top.equalTo(timerLabel).inset(210)
             make.centerX.equalToSuperview().inset(65)
             make.height.equalTo(70)
         }
         
-        descriptionLabel.snp.makeConstraints { make in
+        view.addSubview(variationLabel)
+        variationLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview().inset(89)
             make.bottom.equalTo(mainWordLabel).inset(-70)
             make.height.equalTo(70)
         }
         
+        view.addSubview(greenGameButton)
         greenGameButton.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(567)
             make.right.left.equalToSuperview().inset(12)
             make.height.equalTo(70)
         }
         
+        view.addSubview(redGameButton)
         redGameButton.snp.makeConstraints { make in
             make.bottom.equalTo(greenGameButton).inset(-85)
             make.right.left.equalToSuperview().inset(12)
             make.height.equalTo(70)
         }
         
+        view.addSubview(grayGameButton)
         grayGameButton.snp.makeConstraints { make in
             make.bottom.equalTo(redGameButton).inset(-85)
             make.right.left.equalToSuperview().inset(12)
@@ -198,29 +218,4 @@ extension GameView {
     
 }
 
-
-
-
-
-//import SwiftUI
-//
-//struct PeopleVCProvider: PreviewProvider {
-//    static var previews: some View {
-//        Container().edgesIgnoringSafeArea(.all)
-//            .previewDevice("iPhone 14 Pro ")
-//    }
-//
-//    struct Container: UIViewControllerRepresentable {
-//
-//        let tabBarVC = GameViewController()
-//
-//        func makeUIViewController(context: Context) -> some UIViewController {
-//            tabBarVC
-//        }
-//
-//        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-//
-//        }
-//    }
-//}
 

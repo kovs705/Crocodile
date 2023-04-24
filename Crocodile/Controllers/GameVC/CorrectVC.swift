@@ -13,12 +13,29 @@ class CorrectViewController: UIViewController {
     var isLast: Bool!
     var team: Team!
     
-    var correctView = CorrectWrongView(greetOrLose: true, teamName: "Test")
+    var teams: [Team] = []
+    
+    var correctView = CorrectWrongView(greetOrLose: true, teamName: "Test", isLast: true, team: Team(emoji: "", backColor: "", name: "", score: 0))
     
     let backgroundImage = UIImageView(image: UIImage(named: Resources.Image.backgroundImage))
-    
     let teamInformationImage = UIImageView(image: UIImage(named: Resources.Image.teamInformationImage))
-    var pictureTeamImage = UIImageView(image: UIImage(named: Resources.Image.cowboyImage))
+    
+    let teamView: UIView = {
+       let teamView = UIView()
+        teamView.backgroundColor = .white
+        teamView.frame = CGRectMake(0, 0, 50, 50)
+        teamView.layer.cornerRadius = 40
+        return teamView
+    }()
+    
+    let teamEmoji: UILabel = {
+        let label = UILabel()
+        label.text = "🐊"
+        label.font = UIFont.systemFont(ofSize: 40)
+        label.textAlignment = .center
+        return label
+    }()
+    
     let teamNameLabel = UILabel()
     
     var currentScoresLabel = UILabel()
@@ -35,15 +52,44 @@ class CorrectViewController: UIViewController {
         self.isLast = isLast
         self.team = team
         
-        correctView = CorrectWrongView(greetOrLose: win, teamName: team.name)
+        if teamIndex <= teams.count - 1 {
+            correctView = CorrectWrongView(greetOrLose: win, teamName: teams[teamIndex + 1].name, isLast: isLast, team: team)
+        } else {
+            correctView = CorrectWrongView(greetOrLose: win, teamName: teams[0].name, isLast: isLast, team: team)
+        }
+        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func loadView() {
+        super.loadView()
+        navigationItem.hidesBackButton = true
+        navigationItem.leftBarButtonItem?.isEnabled = false
+    }
+    
+    func getTeams() {
+        TeamManager.shared.getTeams { [weak self ] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let teams):
+                
+                self.teams = teams
+                print(self.teams)
+                
+            case .failure(let failure):
+                fatalError(failure.rawValue)
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        getTeams()
         
         setupBackgroundImage()
         setupTeamInformationImage()
@@ -51,6 +97,7 @@ class CorrectViewController: UIViewController {
         setupPictureTeamImage()
         setupTeamNameLabel()
         setupCurrentScoresLabel()
+        setupCurrentScoresNameLabel()
         
         setupPassTheMoveButton()
         
@@ -89,30 +136,37 @@ class CorrectViewController: UIViewController {
     // имя команды
     func setupTeamNameLabel() {
         view.addSubview(teamNameLabel)
-        teamNameLabel.text = "Ковбои"
+        teamNameLabel.text = team.name
         teamNameLabel.textColor = .black
         teamNameLabel.font = UIFont.systemFont(ofSize: 20)
         teamNameLabel.contentMode = .center
         teamNameLabel.snp.makeConstraints { make in
-            make.left.equalTo(pictureTeamImage.snp.right).offset(34)
+            make.left.equalTo(teamView.snp.right).offset(34)
             make.centerY.equalTo(teamInformationImage)
         }
     }
     
     // картинка комманды
     func setupPictureTeamImage() {
-        view.addSubview(pictureTeamImage)
-        pictureTeamImage.snp.makeConstraints { make in
-            make.width.equalTo(56)
-            make.height.equalTo(56)
-            make.left.equalTo(teamInformationImage.snp.left).offset(27)
+        view.addSubview(teamView)
+        teamView.snp.makeConstraints { make in
+            make.left.equalTo(teamInformationImage.snp.left).offset(55)
             make.centerY.equalTo(teamInformationImage)
         }
+        
+        teamView.addSubview(teamEmoji)
+        teamEmoji.snp.makeConstraints { make in
+            make.centerX.equalTo(teamView)
+            make.centerY.equalTo(teamView)
+        }
+        
+        teamView.backgroundColor = UIColor(named: team.backColor)
+        teamEmoji.text = team.emoji
     }
     
     func setupCurrentScoresLabel() {
         view.addSubview(currentScoresLabel)
-        currentScoresLabel.text = "1"
+        currentScoresLabel.text = String(team.score)
         currentScoresLabel.textColor = .black
         currentScoresLabel.font = UIFont.systemFont(ofSize: 55)
         currentScoresLabel.contentMode = .center
@@ -130,10 +184,11 @@ class CorrectViewController: UIViewController {
         currentScoresNameLabel.contentMode = .center
         currentScoresNameLabel.snp.makeConstraints { make in
             
-            make.right.equalTo(teamInformationImage.snp.right).offset(-30)
+            make.right.equalTo(teamInformationImage.snp.right).offset(-45)
             make.bottom.equalTo(teamInformationImage.snp.bottom).offset(-38)
         }
     }
+    
     
     func setupPassTheMoveButton() {
         view.addSubview(passTheMoveButton)
@@ -143,8 +198,25 @@ class CorrectViewController: UIViewController {
             make.bottom.equalToSuperview().offset(-46)
             make.height.equalTo(60)
         }
+        
+        passTheMoveButton.addTarget(self, action: #selector(closeVC), for: .touchUpInside)
     }
     
-    
+    @objc func closeVC() {
+        navigationController?.popViewController(animated: true)
+        if numberOfMoves <= 10 {
+            if teamIndex >= teams.count - 1 {
+                teamIndex = 0
+                print(teamIndex)
+            } else {
+                teamIndex += 1
+                numberOfMoves += 1
+                print(teamIndex)
+            }
+        } else {
+            let results = GameResultsViewController()
+            navigationController?.pushViewController(results, animated: true)
+        }
+    }
     
 }

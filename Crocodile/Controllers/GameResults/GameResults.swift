@@ -11,7 +11,24 @@ import SnapKit
 class GameResults: UIViewController {
     
     let backgroundImage = UIImageView(image: UIImage(named: Resources.Image.backgroundImage))
-    var teams = Category.getBaseTeams()
+    var teams: [Team] = []
+    
+    func getTeams() {
+        TeamManager.shared.getTeams { [weak self ] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let teams):
+                
+                self.teams = teams
+                print(self.teams)
+                
+                
+            case .failure(let failure):
+                fatalError(failure.rawValue)
+            }
+        }
+    }
     
     
     var scrollView: UIScrollView = {

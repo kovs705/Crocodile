@@ -8,41 +8,7 @@
 import Foundation
 import UIKit
 
-class GameViewController: UIViewController {
-    
-    private let gameView = GameView()
-    private let musicPlayer = MusicModel()
-    private var seconds = 60
-    private var timer = Timer()
-    private var remindTimer = Timer()
-    private var isTimerRunning = false
-    
-    var teams: [Team]!
-    var team: Team!
-    var words: [String]!
-    
-    var teamIndex = 0
-    var numberOfMoves = 0 // until 10
-    
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func loadView() {
-        super.loadView()
-        self.view = gameView
-        navigationItem.hidesBackButton = true
-        navigationItem.leftBarButtonItem?.isEnabled = false
-    }
-    
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        gameView.delegate = self
-        runTimer()
-    }
+class GameViewController: GameVC {
     
     init(teams: [Team]!, team: Team!, words: [String]!) {
         super.init(nibName: nil, bundle: nil)
@@ -51,9 +17,39 @@ class GameViewController: UIViewController {
         self.words = words
     }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    override func loadView() {
+        super.loadView()
+        navigationItem.hidesBackButton = true
+        navigationItem.leftBarButtonItem?.isEnabled = false
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        variationLabel.text = variations.randomElement()
+        mainWordLabel.text = words.randomElement()
+        runTimer()
+        timerLabel.text = "01:00"
+        seconds = 60
+        
+        team = teams[teamIndex]
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        numberOverall = teams.count * numberOfTries
+        teamsCount = teams.count
+        print(numberOverall)
+        print(teamsCount)
+    }
+    
     private func runTimer() {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-        remindTimer = Timer.scheduledTimer(timeInterval: 50, target: self, selector: #selector(reminderTenSecond), userInfo: nil, repeats: false)
+        remindTimer = Timer.scheduledTimer(timeInterval: 49, target: self, selector: #selector(reminderTenSecond), userInfo: nil, repeats: false)
     }
     
     @objc private func reminderTenSecond() {
@@ -75,29 +71,24 @@ class GameViewController: UIViewController {
             
         } else {
             seconds -= 1
-            gameView.timerLabel.text = gameView.timeString(time: TimeInterval(seconds))
+            self.timerLabel.text = self.timeString(time: TimeInterval(seconds))
         }
         
     }
     
-    func timersInvalidate() {
-        timer.invalidate()
-        remindTimer.invalidate()
-    }
+    
     
 }
 
-extension GameViewController: SelectorAnswerDelegate {
+extension GameVC {
     
-    func rightButtonDidTapped(_ header: GameView) {
+    @objc func rightButtonDidTapped(_ header: GameVC) {
+        timersInvalidate()
         print("Ответ верный")
+        greenGameButton.blink()
         
-        let correctVC = CorrectViewController(win: false, isLast: true, team: team)
-        show(correctVC, sender: self)
         
         musicPlayer.playSound(nameOfMusic: "win")
-        
-        timersInvalidate()
         
         TeamManager.shared.updateWith(team: team, action: .plus) { result in
             TeamManager.getTeams { team in
@@ -110,19 +101,26 @@ extension GameViewController: SelectorAnswerDelegate {
             }
         }
         
+        let correctVC = CorrectViewController(win: true, isLast: false, team: team)
+        show(correctVC, sender: self)
+        
         DispatchQueue.main.asyncAfter(deadline: .now()+2) {
-            print("переход на следующий экарн")
+            print("переход на следующий экран")
             // делаем транзишн на экран победы и зачисления 1 балла с кол-вом общих балов за игру
         }
         
     }
     
-    func wrongButtonDidTapped(_ header: GameView) {
+    
+    @objc func wrongButtonDidTapped(_ header: GameVC) {
+        timersInvalidate()
         print("Ответ не верный")
+        redGameButton.blink()
         
         musicPlayer.playSound(nameOfMusic: "lost")
         
-        timersInvalidate()
+        let wrongVC = CorrectViewController(win: false, isLast: false, team: team)
+        show(wrongVC, sender: self)
         
         DispatchQueue.main.asyncAfter(deadline: .now()+2) {
             print("переход на следующий экарн")
@@ -131,11 +129,13 @@ extension GameViewController: SelectorAnswerDelegate {
         
     }
     
-    func resetButtonDidTapped(_ header: GameView) {
+    @objc func resetButtonDidTapped(_ header: GameVC) {
+        timersInvalidate()
+        grayGameButton.blink()
+        
         let alertController = UIAlertController(title: "Сбросить игру?", message: "Вы хотите сбросить прогресс вашей игры и вернуться в главное меню?", preferredStyle: .alert)
         
-        let alertOk = UIAlertAction(title: "Ok", style: .default) { [weak self] _ in
-            guard let self = self else { return }
+        let alertOk = UIAlertAction(title: "Ok", style: .default) { _ in
             TeamManager.shared.getTeams { team in
                 switch team {
                 case.failure(let error):
@@ -144,8 +144,6 @@ extension GameViewController: SelectorAnswerDelegate {
                 case .success(let teamModel):
                     print(teamModel)
                     print("Данные о командах сброшены")
-                    
-                    self.timersInvalidate()
                 }
             }
         }
