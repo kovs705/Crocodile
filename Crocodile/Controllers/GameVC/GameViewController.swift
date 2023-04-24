@@ -42,9 +42,7 @@ class GameViewController: GameVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         numberOverall = teams.count * numberOfTries
-        teamsCount = teams.count
-        print(numberOverall)
-        print(teamsCount)
+        numberOfMoves += 1
     }
     
     private func runTimer() {

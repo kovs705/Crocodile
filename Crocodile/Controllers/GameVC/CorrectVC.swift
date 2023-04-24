@@ -15,7 +15,7 @@ class CorrectViewController: UIViewController {
     
     var teams: [Team] = []
     
-    var correctView = CorrectWrongView(greetOrLose: true, teamName: "Test", isLast: true, team: Team(emoji: "", backColor: "", name: "", score: 0))
+    var correctView = CorrectWrongView(greetOrLose: true, teamName: "Test", isLast: true)
     
     let backgroundImage = UIImageView(image: UIImage(named: Resources.Image.backgroundImage))
     let teamInformationImage = UIImageView(image: UIImage(named: Resources.Image.teamInformationImage))
@@ -51,12 +51,6 @@ class CorrectViewController: UIViewController {
         self.win = win
         self.isLast = isLast
         self.team = team
-        
-        if teamIndex <= teams.count - 1 {
-            correctView = CorrectWrongView(greetOrLose: win, teamName: teams[teamIndex + 1].name, isLast: isLast, team: team)
-        } else {
-            correctView = CorrectWrongView(greetOrLose: win, teamName: teams[0].name, isLast: isLast, team: team)
-        }
         
     }
     
@@ -203,15 +197,16 @@ class CorrectViewController: UIViewController {
     }
     
     @objc func closeVC() {
-        navigationController?.popViewController(animated: true)
         if numberOfMoves <= 10 {
             if teamIndex >= teams.count - 1 {
                 teamIndex = 0
-                print(teamIndex)
+                print(numberOfMoves)
+                navigationController?.popViewController(animated: true)
             } else {
                 teamIndex += 1
                 numberOfMoves += 1
-                print(teamIndex)
+                print(numberOfMoves)
+                navigationController?.popViewController(animated: true)
             }
         } else {
             let results = GameResultsViewController()

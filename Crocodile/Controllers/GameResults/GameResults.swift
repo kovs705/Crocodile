@@ -13,6 +13,21 @@ class GameResults: UIViewController {
     let backgroundImage = UIImageView(image: UIImage(named: Resources.Image.backgroundImage))
     var teams: [Team] = []
     
+    lazy var nextButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("На главную", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = #colorLiteral(red: 0.5230828524, green: 0.7005900741, blue: 0.2440984249, alpha: 1)
+        button.layer.cornerRadius = 15
+        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func buttonPressed() {
+        let mainVC = MainViewController()
+        navigationController?.pushViewController(mainVC, animated: true)
+    }
+    
     func getTeams() {
         TeamManager.shared.getTeams { [weak self ] result in
             guard let self = self else { return }
