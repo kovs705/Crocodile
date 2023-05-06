@@ -7,11 +7,16 @@ Team project - Crocodile game from Swift marathon
 - UserDefaults
 
 ## Contributors
-[Me, Kovs705](github.com/kovs705)
+[Me, Kovs705](github.com/kovs705) 
+
 [Amsterdance26](https://github.com/Amsterdance26)
+
 [Albina](https://github.com/AnioBom)
+
 [BelyahRU](https://github.com/BelyahRU)
+
 [bHokk](https://github.com/bHokk)
+
 [Nikita](https://github.com/wildwoodB)
 
 ## Requirements
