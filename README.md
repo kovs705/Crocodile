@@ -22,6 +22,7 @@ Team project - Crocodile game from Swift marathon
 ## Requirements
 - physical iPhone or Simulator
 - iOS 16.2 minimum
+- completed project is on develop2 branch.
 
 ## What we used:
 - Merging and commiting: Fork
